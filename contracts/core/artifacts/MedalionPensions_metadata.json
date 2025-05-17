@@ -1,0 +1,654 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_registry",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "productId",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct ProtoPension",
+						"name": "_pPension",
+						"type": "tuple"
+					}
+				],
+				"name": "createPension",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "_vault",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_feeName",
+						"type": "string"
+					}
+				],
+				"name": "getFee",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_fee",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getFeeToken",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "_feeToken",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_symbol",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getPension",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "creator",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "vault",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "maturityDate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "dissolutionDate",
+								"type": "uint256"
+							},
+							{
+								"components": [
+									{
+										"internalType": "uint256",
+										"name": "id",
+										"type": "uint256"
+									},
+									{
+										"internalType": "address",
+										"name": "provider",
+										"type": "address"
+									},
+									{
+										"internalType": "address",
+										"name": "erc20",
+										"type": "address"
+									},
+									{
+										"internalType": "uint256",
+										"name": "totalContribution",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "principalOnMaturity",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "interest",
+										"type": "uint256"
+									},
+									{
+										"internalType": "enum RiskType",
+										"name": "riskType",
+										"type": "uint8"
+									},
+									{
+										"components": [
+											{
+												"internalType": "enum Schedule",
+												"name": "schedule",
+												"type": "uint8"
+											},
+											{
+												"internalType": "uint256",
+												"name": "term",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "minimumAmount",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "maximumAmount",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "totalIntervals",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "totalAmount",
+												"type": "uint256"
+											}
+										],
+										"internalType": "struct FinancialSchedule",
+										"name": "contributionSchedule",
+										"type": "tuple"
+									},
+									{
+										"components": [
+											{
+												"internalType": "enum Schedule",
+												"name": "schedule",
+												"type": "uint8"
+											},
+											{
+												"internalType": "uint256",
+												"name": "term",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "minimumAmount",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "maximumAmount",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "totalIntervals",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "totalAmount",
+												"type": "uint256"
+											}
+										],
+										"internalType": "struct FinancialSchedule",
+										"name": "emissionSchedule",
+										"type": "tuple"
+									},
+									{
+										"components": [
+											{
+												"internalType": "uint256",
+												"name": "maxGainPercentage",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "maxLossPercentage",
+												"type": "uint256"
+											}
+										],
+										"internalType": "struct Tolerance",
+										"name": "tolerance",
+										"type": "tuple"
+									},
+									{
+										"internalType": "uint256",
+										"name": "createdDate",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "expiryDate",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "units",
+										"type": "uint256"
+									}
+								],
+								"internalType": "struct MPProduct",
+								"name": "product",
+								"type": "tuple"
+							}
+						],
+						"internalType": "struct MPension",
+						"name": "_pension",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getPension",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "creator",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "vault",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "maturityDate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "dissolutionDate",
+								"type": "uint256"
+							},
+							{
+								"components": [
+									{
+										"internalType": "uint256",
+										"name": "id",
+										"type": "uint256"
+									},
+									{
+										"internalType": "address",
+										"name": "provider",
+										"type": "address"
+									},
+									{
+										"internalType": "address",
+										"name": "erc20",
+										"type": "address"
+									},
+									{
+										"internalType": "uint256",
+										"name": "totalContribution",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "principalOnMaturity",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "interest",
+										"type": "uint256"
+									},
+									{
+										"internalType": "enum RiskType",
+										"name": "riskType",
+										"type": "uint8"
+									},
+									{
+										"components": [
+											{
+												"internalType": "enum Schedule",
+												"name": "schedule",
+												"type": "uint8"
+											},
+											{
+												"internalType": "uint256",
+												"name": "term",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "minimumAmount",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "maximumAmount",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "totalIntervals",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "totalAmount",
+												"type": "uint256"
+											}
+										],
+										"internalType": "struct FinancialSchedule",
+										"name": "contributionSchedule",
+										"type": "tuple"
+									},
+									{
+										"components": [
+											{
+												"internalType": "enum Schedule",
+												"name": "schedule",
+												"type": "uint8"
+											},
+											{
+												"internalType": "uint256",
+												"name": "term",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "minimumAmount",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "maximumAmount",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "totalIntervals",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "totalAmount",
+												"type": "uint256"
+											}
+										],
+										"internalType": "struct FinancialSchedule",
+										"name": "emissionSchedule",
+										"type": "tuple"
+									},
+									{
+										"components": [
+											{
+												"internalType": "uint256",
+												"name": "maxGainPercentage",
+												"type": "uint256"
+											},
+											{
+												"internalType": "uint256",
+												"name": "maxLossPercentage",
+												"type": "uint256"
+											}
+										],
+										"internalType": "struct Tolerance",
+										"name": "tolerance",
+										"type": "tuple"
+									},
+									{
+										"internalType": "uint256",
+										"name": "createdDate",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "expiryDate",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "units",
+										"type": "uint256"
+									}
+								],
+								"internalType": "struct MPProduct",
+								"name": "product",
+								"type": "tuple"
+							}
+						],
+						"internalType": "struct MPension",
+						"name": "_pension",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getPensionIds",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "_pensionIds",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getVersion",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_version",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/core/MedalionPensions.sol": "MedalionPensions"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/interfaces/IERC20.sol": {
+			"keccak256": "0xce41876e78d1badc0512229b4d14e4daf83bc1003d7f83978d18e0e56f965b9c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a2608291cb038b388d80b79a06b6118a42f7894ff67b7da10ec0dbbf5b2973ba",
+				"dweb:/ipfs/QmWohqcBLbcxmA4eGPhZDXe5RYMMEEpFq22nfkaUMvTfw1"
+			]
+		},
+		"@openzeppelin/contracts/interfaces/IERC20Metadata.sol": {
+			"keccak256": "0x00c23b80f74717a6765b606001c5c633116020d488ee8f53600685b8200e4bf3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e73d0bd5ff47377a97d52149a805d82112f88c9f4ae853ef246a536bd31ce1da",
+				"dweb:/ipfs/QmagG3Yup65JQPSMZScubYTCeyuUyvKLxBM3X1er6xWWxf"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xe06a3f08a987af6ad2e1c1e774405d4fe08f1694b67517438b467cecf0da0ef7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://df6f0c459663c9858b6cba2cda1d14a7d05a985bed6d2de72bd8e78c25ee79db",
+				"dweb:/ipfs/QmeTTxZ7qVk9rjEv2R4CpCwdf8UMCcRqDNMvzNxHc3Fnn9"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+			"keccak256": "0x70f2f713b13b7ce4610bcd0ac9fec0f3cc43693b043abcb8dc40a42a726eb330",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c13d13304ac79a83ab1c30168967d19e2203342ebbd6a9bbce4db7550522dcbf",
+				"dweb:/ipfs/QmeN5jKMN2vw5bhacr6tkg78afbTTZUeaacNHqjWt4Ew1r"
+			]
+		},
+		"contracts/core/MedalionPensions.sol": {
+			"keccak256": "0x4cdc9566ae71bbc73c98dc557ef64c35eb69bcb69054568a5c8748158e68330f",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://98b976fcdb6e086ceb8d210a932b66fb76a0016c78c15a8a6598566dac846a44",
+				"dweb:/ipfs/QmV6j6y2HE1bhou9woMFq2MYfYnrhfSHv9KCc9BaxH2ai5"
+			]
+		},
+		"contracts/interfaces/IMedallionPensions.sol": {
+			"keccak256": "0x1f6ed2ae1231b21c12f1b3c55de62b31c89ddbe9952070ccbd2391503ea296fc",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://6fb055b6c0aa9ff1b932161141abaee6cd48d367c0d940194fd0f4fef261c41a",
+				"dweb:/ipfs/QmXUWNuDb3nuS4vuC5GoUGwHrJ32JrEyiDZGVEzc9NMhFr"
+			]
+		},
+		"contracts/interfaces/factory/IMPVaultFactory.sol": {
+			"keccak256": "0xebafcfba85f4a35b0e6a2d3ad94ce719c752f75ffe6fd61228f1a44b548a6d30",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://a45f8dc45e0eaae2df98485bf17477b67fe71040b5713dad4d58571a80777300",
+				"dweb:/ipfs/Qmcokdg5mJjGRHotv8UdbBKjk6K8ipF8JgRmK8wNHbSz78"
+			]
+		},
+		"contracts/interfaces/product/IMPProductManager.sol": {
+			"keccak256": "0x3fe748da6420b20f970e8a1443814276d780fd87c4103cf10f1750610d5f03de",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://dbe02452199900cb1ad9ca9a12454da848ee6d0639a1139bc6724dcc94630efc",
+				"dweb:/ipfs/QmUWNaEDFWCUafMnZPRfMf7RxtY5e5FqJxE8pyeTwbgfkY"
+			]
+		},
+		"contracts/interfaces/util/IMPTxManager.sol": {
+			"keccak256": "0xb2661b9da60f8a483054001232cae554bfb617df3868c135b754b939a3dcd3d4",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://62fa28535ff5723e73ce44028fa21fce22c0e6c7e3df58db0124337d0d5cd7f0",
+				"dweb:/ipfs/QmQiGQRH5ixRbGWKynpzJAjwhUpjosNo7pLpGuVGWGCBzM"
+			]
+		},
+		"contracts/interfaces/util/IRegister.sol": {
+			"keccak256": "0x2728fc17d66438db568f764b1a39dde3bc911b1246a8f31182e9a05b76e7ea8f",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://d172d51d432ac26a6d44d116d967347055fdc5cc77f98836caf735dd4f331067",
+				"dweb:/ipfs/QmaJSHMHZmppZWHMJqqNXsF8BWj1wToJvWuewBuJSLLKTg"
+			]
+		},
+		"contracts/interfaces/util/IVersion.sol": {
+			"keccak256": "0x2b1635fee7f38a02aff4dfe8c66655df3b198ca74b1455e5977304cf003b6a12",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://71969e06b2ea2b0736e26788f197970e20b0510a4e11d5190f33353b40a92a79",
+				"dweb:/ipfs/QmR5zgEhoib45vCiE7wQ37kLxoC6RZeZfDb9jxe6xK5VYb"
+			]
+		},
+		"contracts/structs/MPStructs.sol": {
+			"keccak256": "0x4090d5bcddaa9a6149aca51055174d9ea0e6664e09bd2ec994b920170f885dd2",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://305ce80e3efe8d2d454f2c90b180fc98e31b484433b65f4af1910a22d17c1bc2",
+				"dweb:/ipfs/QmV3tvkcwShcKfAvntAuYuGfhqV9z9Ayr1fCQCqxwXbGNV"
+			]
+		}
+	},
+	"version": 1
+}

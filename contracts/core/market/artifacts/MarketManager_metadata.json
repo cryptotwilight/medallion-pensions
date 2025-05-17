@@ -1,0 +1,429 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_register",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_marketId",
+						"type": "uint256"
+					}
+				],
+				"name": "closeMarket",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_marketId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_positionId",
+						"type": "uint256"
+					}
+				],
+				"name": "closePosition",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_returnAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_fromToken",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_toToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_minDuration",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_maxDuration",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_minReturn",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_maxReturn",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum RiskType",
+						"name": "_riskType",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_maxInvestmentSlots",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_marketBondId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_maxMarketTerm",
+						"type": "uint256"
+					}
+				],
+				"name": "createMarket",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_marketId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAllowedMarketTokens",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "_erc20",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_marketId",
+						"type": "uint256"
+					}
+				],
+				"name": "getMarket",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "enum RiskType",
+								"name": "riskType",
+								"type": "uint8"
+							},
+							{
+								"internalType": "address",
+								"name": "fromToken",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "toToken",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "minDuration",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "maxDuration",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "minReturn",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "maxReturn",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "maxSlots",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "bondId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "createDate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "expiryDate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "finalExitDate",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Market",
+						"name": "_market",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getMarkets",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "_marketIds",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getVersion",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_version",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_marketBondId",
+						"type": "uint256"
+					}
+				],
+				"name": "hasOpenPositions",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "_hasOpenPositions",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_marketId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_positionId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "openPosition",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/core/market/MPMarketManager.sol": "MarketManager"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xe06a3f08a987af6ad2e1c1e774405d4fe08f1694b67517438b467cecf0da0ef7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://df6f0c459663c9858b6cba2cda1d14a7d05a985bed6d2de72bd8e78c25ee79db",
+				"dweb:/ipfs/QmeTTxZ7qVk9rjEv2R4CpCwdf8UMCcRqDNMvzNxHc3Fnn9"
+			]
+		},
+		"contracts/core/market/MPMarketManager.sol": {
+			"keccak256": "0x0f739eb8ab036168cc2087631e858da90f9d9f486f3afa9fa097b0f299f4f03a",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://15d5255643c3607324220779c5df7ca8e6bd281778983cc7b899e0bd11511e4a",
+				"dweb:/ipfs/QmXkqgTxww4YFY4HUXf4H5B99YeHMdmLw9Fo3tVTw5Ukuo"
+			]
+		},
+		"contracts/interfaces/market/IMPMarketManager.sol": {
+			"keccak256": "0x1918753bba2a855ada7926bb5cf90a026a346d0b369f0d4106ef374cdcd8eb3f",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://5f94420bad4a202f1044a47f5c573e8d5daf8666d31aabbc77f20bed4ff7948f",
+				"dweb:/ipfs/QmRtaRHJrrcKjxS7gNvuCoaSRusBL2WiANdTKrhfCnyyTj"
+			]
+		},
+		"contracts/interfaces/util/IMPBondManager.sol": {
+			"keccak256": "0x74f677285030bec689403ab66a2c0ddffdf51c2e0cc10b52e8bd24752c410087",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://50b47617d0cf60eecb0a9d1b1aa396be0b020de1f9311d08ea8db7caa2e7034d",
+				"dweb:/ipfs/Qmb1Hcm8ZG8UgyL5pCChq9ZY3Xw7u8sjLXkQ9svzpprMZx"
+			]
+		},
+		"contracts/interfaces/util/IMPTxManager.sol": {
+			"keccak256": "0xb2661b9da60f8a483054001232cae554bfb617df3868c135b754b939a3dcd3d4",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://62fa28535ff5723e73ce44028fa21fce22c0e6c7e3df58db0124337d0d5cd7f0",
+				"dweb:/ipfs/QmQiGQRH5ixRbGWKynpzJAjwhUpjosNo7pLpGuVGWGCBzM"
+			]
+		},
+		"contracts/interfaces/util/IRegister.sol": {
+			"keccak256": "0x2728fc17d66438db568f764b1a39dde3bc911b1246a8f31182e9a05b76e7ea8f",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://d172d51d432ac26a6d44d116d967347055fdc5cc77f98836caf735dd4f331067",
+				"dweb:/ipfs/QmaJSHMHZmppZWHMJqqNXsF8BWj1wToJvWuewBuJSLLKTg"
+			]
+		},
+		"contracts/interfaces/util/IVersion.sol": {
+			"keccak256": "0x2b1635fee7f38a02aff4dfe8c66655df3b198ca74b1455e5977304cf003b6a12",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://71969e06b2ea2b0736e26788f197970e20b0510a4e11d5190f33353b40a92a79",
+				"dweb:/ipfs/QmR5zgEhoib45vCiE7wQ37kLxoC6RZeZfDb9jxe6xK5VYb"
+			]
+		},
+		"contracts/lib/MPLib.sol": {
+			"keccak256": "0x4a1a6e618d48b244ec454c1d69ef60bddfda7dee4f0a929ee84c1755a87cbbb9",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://6b077f784cfa7b92222e054fad7fe55484813a72a965a6bd6ca9943e1eb56bf4",
+				"dweb:/ipfs/QmdFTGe8Pht3u68JTb1ThPfDZyY3wHaL3YV3QtZzQ9v1mQ"
+			]
+		},
+		"contracts/structs/MPStructs.sol": {
+			"keccak256": "0xeec22747f8e03ed69b4b76f93747501634aa75fad8b9fc3bfa03ea44f24cd3c4",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://a8b131e8a8367e53776cf052b53aa63bb5207066596a60fb0af9a02ed146e2e7",
+				"dweb:/ipfs/QmfQvHvzvhVno2cxfyY9CfAJWwGnBQBBYrF8FVEo78dx2a"
+			]
+		}
+	},
+	"version": 1
+}

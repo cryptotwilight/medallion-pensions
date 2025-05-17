@@ -1,0 +1,103 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"name": "getAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					}
+				],
+				"name": "hasAddress",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "_hasAddress",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "isKnown",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "_isKnown",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/core/MPensionVault_flattened.sol": "IRegister"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/core/MPensionVault_flattened.sol": {
+			"keccak256": "0x055ad8e834b6f5e9d268911511f28672d3762ed944714cf80bdc0de8ad30eb3d",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://ee7bc5a0075961ecb95024e5c2fc555b8541a76030fa95627a084c78f90df49b",
+				"dweb:/ipfs/QmepzisX61egP51BnUvvkp98s69nYkGYeAM8hCahrGQ8wT"
+			]
+		}
+	},
+	"version": 1
+}

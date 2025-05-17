@@ -1,0 +1,336 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_marketId",
+						"type": "uint256"
+					}
+				],
+				"name": "closeMarket",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_marketId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_positionId",
+						"type": "uint256"
+					}
+				],
+				"name": "closePosition",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_returnAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_fromToken",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_toToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_minDuration",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_maxDuration",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_minReturn",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_maxReturn",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum RiskType",
+						"name": "_riskType",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_maxInvestmentSlots",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_marketBondId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_maxMarketTerm",
+						"type": "uint256"
+					}
+				],
+				"name": "createMarket",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_marketId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAllowedMarketTokens",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "_erc20",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_marketId",
+						"type": "uint256"
+					}
+				],
+				"name": "getMarket",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "enum RiskType",
+								"name": "riskType",
+								"type": "uint8"
+							},
+							{
+								"internalType": "address",
+								"name": "fromToken",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "toToken",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "minDuration",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "maxDuration",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "minReturn",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "maxReturn",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "maxSlots",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "bondId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "createDate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "expiryDate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "finalExitDate",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Market",
+						"name": "_market",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getMarkets",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "marketIds",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_marketBondId",
+						"type": "uint256"
+					}
+				],
+				"name": "hasOpenPositions",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "_hasOpenPositions",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_marketId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_positionId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "openPosition",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/market/IMPMarketManager.sol": "IMPMarketManager"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/market/IMPMarketManager.sol": {
+			"keccak256": "0x1918753bba2a855ada7926bb5cf90a026a346d0b369f0d4106ef374cdcd8eb3f",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://5f94420bad4a202f1044a47f5c573e8d5daf8666d31aabbc77f20bed4ff7948f",
+				"dweb:/ipfs/QmRtaRHJrrcKjxS7gNvuCoaSRusBL2WiANdTKrhfCnyyTj"
+			]
+		},
+		"contracts/structs/MPStructs.sol": {
+			"keccak256": "0xeec22747f8e03ed69b4b76f93747501634aa75fad8b9fc3bfa03ea44f24cd3c4",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://a8b131e8a8367e53776cf052b53aa63bb5207066596a60fb0af9a02ed146e2e7",
+				"dweb:/ipfs/QmfQvHvzvhVno2cxfyY9CfAJWwGnBQBBYrF8FVEo78dx2a"
+			]
+		}
+	},
+	"version": 1
+}

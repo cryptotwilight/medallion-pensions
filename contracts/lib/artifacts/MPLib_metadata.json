@@ -1,0 +1,61 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/lib/MPLib.sol": "MPLib"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xe06a3f08a987af6ad2e1c1e774405d4fe08f1694b67517438b467cecf0da0ef7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://df6f0c459663c9858b6cba2cda1d14a7d05a985bed6d2de72bd8e78c25ee79db",
+				"dweb:/ipfs/QmeTTxZ7qVk9rjEv2R4CpCwdf8UMCcRqDNMvzNxHc3Fnn9"
+			]
+		},
+		"contracts/lib/MPLib.sol": {
+			"keccak256": "0x4a1a6e618d48b244ec454c1d69ef60bddfda7dee4f0a929ee84c1755a87cbbb9",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://6b077f784cfa7b92222e054fad7fe55484813a72a965a6bd6ca9943e1eb56bf4",
+				"dweb:/ipfs/QmdFTGe8Pht3u68JTb1ThPfDZyY3wHaL3YV3QtZzQ9v1mQ"
+			]
+		},
+		"contracts/structs/MPStructs.sol": {
+			"keccak256": "0xeec22747f8e03ed69b4b76f93747501634aa75fad8b9fc3bfa03ea44f24cd3c4",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://a8b131e8a8367e53776cf052b53aa63bb5207066596a60fb0af9a02ed146e2e7",
+				"dweb:/ipfs/QmfQvHvzvhVno2cxfyY9CfAJWwGnBQBBYrF8FVEo78dx2a"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,75 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_in",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amountIn",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_out",
+						"type": "address"
+					}
+				],
+				"name": "swap",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amountOut",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/market/IMPDexHandler.sol": "IMPDexHandler"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/market/IMPDexHandler.sol": {
+			"keccak256": "0x2537b78d974d01469167e803f124891b94b66a095487fb753e0f60f116502acd",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://0157044eb5698705865ce8a5c920ff8458e566ca4940b60211fbdc297e56fac7",
+				"dweb:/ipfs/QmTsrDy3bAVk52tY8FPPHtcaQQK9E2URW83QqNaCNr4ngz"
+			]
+		}
+	},
+	"version": 1
+}

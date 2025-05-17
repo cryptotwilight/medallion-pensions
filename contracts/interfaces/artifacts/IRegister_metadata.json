@@ -1,0 +1,78 @@
+{
+	"compiler": {
+		"version": "0.8.29+commit.ab55807c"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"name": "getAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getMarkets",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "_treasuryMarkets",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/IRegister.sol": "IRegister"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/IRegister.sol": {
+			"keccak256": "0xf234e27153ee9e5bb4e5e98c03d570fa8cfd34737d49adaafe000968bcbfdde4",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://4232fc0947c94d7deab26f15619f53fed0deff1934c3730bd08077239b15d7c1",
+				"dweb:/ipfs/QmaZYo1fAJb4KBdCgzRyV3GVgZrnVDU9rj6TcxQ8jHcUbH"
+			]
+		}
+	},
+	"version": 1
+}

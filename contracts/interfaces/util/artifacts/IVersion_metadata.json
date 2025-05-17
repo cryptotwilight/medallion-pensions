@@ -1,0 +1,72 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "getName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getVersion",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_version",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/util/IVersion.sol": "IVersion"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/util/IVersion.sol": {
+			"keccak256": "0x2b1635fee7f38a02aff4dfe8c66655df3b198ca74b1455e5977304cf003b6a12",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://71969e06b2ea2b0736e26788f197970e20b0510a4e11d5190f33353b40a92a79",
+				"dweb:/ipfs/QmR5zgEhoib45vCiE7wQ37kLxoC6RZeZfDb9jxe6xK5VYb"
+			]
+		}
+	},
+	"version": 1
+}

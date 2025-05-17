@@ -1,0 +1,245 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"goerli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"deployedBytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"gasEstimates": null,
+		"methodIdentifiers": {
+			"getBondById(uint256)": "9c271c50",
+			"getUserBond(uint8,address)": "012fe794",
+			"hasBond(uint8,address)": "ce862001",
+			"placeBond(uint8,uint256,address)": "91857eec",
+			"releaseBond(uint256)": "34706ecf"
+		}
+	},
+	"abi": [
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_bondId",
+					"type": "uint256"
+				}
+			],
+			"name": "getBondById",
+			"outputs": [
+				{
+					"components": [
+						{
+							"internalType": "uint256",
+							"name": "id",
+							"type": "uint256"
+						},
+						{
+							"internalType": "address",
+							"name": "owner",
+							"type": "address"
+						},
+						{
+							"internalType": "uint256",
+							"name": "amount",
+							"type": "uint256"
+						},
+						{
+							"internalType": "address",
+							"name": "erc20",
+							"type": "address"
+						},
+						{
+							"internalType": "uint256",
+							"name": "created",
+							"type": "uint256"
+						},
+						{
+							"internalType": "enum BondType",
+							"name": "bType",
+							"type": "uint8"
+						}
+					],
+					"internalType": "struct SecurityBond",
+					"name": "_bond",
+					"type": "tuple"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "enum BondType",
+					"name": "_type",
+					"type": "uint8"
+				},
+				{
+					"internalType": "address",
+					"name": "_user",
+					"type": "address"
+				}
+			],
+			"name": "getUserBond",
+			"outputs": [
+				{
+					"components": [
+						{
+							"internalType": "uint256",
+							"name": "id",
+							"type": "uint256"
+						},
+						{
+							"internalType": "address",
+							"name": "owner",
+							"type": "address"
+						},
+						{
+							"internalType": "uint256",
+							"name": "amount",
+							"type": "uint256"
+						},
+						{
+							"internalType": "address",
+							"name": "erc20",
+							"type": "address"
+						},
+						{
+							"internalType": "uint256",
+							"name": "created",
+							"type": "uint256"
+						},
+						{
+							"internalType": "enum BondType",
+							"name": "bType",
+							"type": "uint8"
+						}
+					],
+					"internalType": "struct SecurityBond",
+					"name": "_bond",
+					"type": "tuple"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "enum BondType",
+					"name": "_type",
+					"type": "uint8"
+				},
+				{
+					"internalType": "address",
+					"name": "_user",
+					"type": "address"
+				}
+			],
+			"name": "hasBond",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "_hasBondType",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "enum BondType",
+					"name": "_type",
+					"type": "uint8"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_amount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "_erc20",
+					"type": "address"
+				}
+			],
+			"name": "placeBond",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "_bondId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_txId",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_bondId",
+					"type": "uint256"
+				}
+			],
+			"name": "releaseBond",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "_txId",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		}
+	]
+}

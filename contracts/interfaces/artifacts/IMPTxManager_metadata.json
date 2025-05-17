@@ -1,0 +1,124 @@
+{
+	"compiler": {
+		"version": "0.8.29+commit.ab55807c"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_mPensionId",
+						"type": "uint256"
+					}
+				],
+				"name": "getMPensionTx",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "_txIds",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"name": "getTx",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum TxType",
+								"name": "txType",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint256",
+								"name": "mPensionId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "date",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "erc20",
+								"type": "address"
+							}
+						],
+						"internalType": "struct Tx",
+						"name": "_tx",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/IMPTxManager.sol": "IMPTxManager"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/IMPTxManager.sol": {
+			"keccak256": "0x88907a18ec3fbd62edc0c4a5f44c5e870479130d29b7501a9f328d482b6e2939",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://4df608b52c247029759db7f16f3c17ba203adc5b7325c11e92f8d2b8e8aa0175",
+				"dweb:/ipfs/QmVzopYjfuy2sgdvaUsC8ftuAZtJngybqQtLcPeb1tfV76"
+			]
+		},
+		"contracts/structs/MPStructs.sol": {
+			"keccak256": "0x9f8eb1254a8bf9248b83c66b684358d5369403749e825489791444ecd33d2e9d",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://b3c8d1aaeb37387a63d6743d510c30cb010ce4480d47338906e3aada7e94605c",
+				"dweb:/ipfs/QmS9LG63uxmR8XZs2t8zn3Z2CJ6CLsoK3sbLgPyHdsUfuH"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,326 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"goerli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"deployedBytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"gasEstimates": null,
+		"methodIdentifiers": {
+			"closeMarket(uint256)": "ae418095",
+			"closePosition(uint256,uint256)": "2d6ce61d",
+			"createMarket(address,address,uint256,uint256,uint256,uint256,uint256,address,uint256)": "1e803487",
+			"getAllowedMarketTokens()": "5fc7b760",
+			"getMarket(uint256)": "eb44fdd3",
+			"getMarkets()": "ec2c9016",
+			"openPosition(uint256,uint256,uint256)": "5ece09c5"
+		}
+	},
+	"abi": [
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_marketId",
+					"type": "uint256"
+				}
+			],
+			"name": "closeMarket",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "_txId",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_marketId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_positionId",
+					"type": "uint256"
+				}
+			],
+			"name": "closePosition",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "_returnAmount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_txId",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_fromToken",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "_tooToken",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_minDuration",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_maxDuration",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_minReturn",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_maxInvestmentSlots",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_marketBondAmount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "_marketBondErc20",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_maxMarketTerm",
+					"type": "uint256"
+				}
+			],
+			"name": "createMarket",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "_marketId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_txId",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getAllowedMarketTokens",
+			"outputs": [
+				{
+					"internalType": "address[]",
+					"name": "_erc20",
+					"type": "address[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_marketId",
+					"type": "uint256"
+				}
+			],
+			"name": "getMarket",
+			"outputs": [
+				{
+					"components": [
+						{
+							"internalType": "uint256",
+							"name": "id",
+							"type": "uint256"
+						},
+						{
+							"internalType": "address",
+							"name": "owner",
+							"type": "address"
+						},
+						{
+							"internalType": "enum RiskType",
+							"name": "riskType",
+							"type": "uint8"
+						},
+						{
+							"internalType": "address",
+							"name": "fromToken",
+							"type": "address"
+						},
+						{
+							"internalType": "address",
+							"name": "toToken",
+							"type": "address"
+						},
+						{
+							"internalType": "uint256",
+							"name": "minDuration",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "maxDuration",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "minReturn",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "maxSlots",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "marketBondAmount",
+							"type": "uint256"
+						},
+						{
+							"internalType": "address",
+							"name": "marketBondErc20",
+							"type": "address"
+						},
+						{
+							"internalType": "uint256",
+							"name": "createDate",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "expiryDate",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "finalExitDate",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "bondId",
+							"type": "uint256"
+						}
+					],
+					"internalType": "struct Market",
+					"name": "_market",
+					"type": "tuple"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getMarkets",
+			"outputs": [
+				{
+					"internalType": "uint256[]",
+					"name": "marketIds",
+					"type": "uint256[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_marketId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_positionId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_amount",
+					"type": "uint256"
+				}
+			],
+			"name": "openPosition",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "_txId",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "payable",
+			"type": "function"
+		}
+	]
+}

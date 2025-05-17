@@ -1,0 +1,238 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_bondId",
+						"type": "uint256"
+					}
+				],
+				"name": "getBondById",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "erc20",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "created",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum BondType",
+								"name": "bType",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct SecurityBond",
+						"name": "_bond",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum BondType",
+						"name": "_type",
+						"type": "uint8"
+					},
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"name": "getUserBond",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "erc20",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "created",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum BondType",
+								"name": "bType",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct SecurityBond",
+						"name": "_bond",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum BondType",
+						"name": "_type",
+						"type": "uint8"
+					},
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"name": "hasBond",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "_hasBondType",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum BondType",
+						"name": "_type",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_erc20",
+						"type": "address"
+					}
+				],
+				"name": "placeBond",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_bondId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_bondId",
+						"type": "uint256"
+					}
+				],
+				"name": "releaseBond",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/util/IMPBondManager.sol": "IMPBondManager"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/util/IMPBondManager.sol": {
+			"keccak256": "0x74f677285030bec689403ab66a2c0ddffdf51c2e0cc10b52e8bd24752c410087",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://50b47617d0cf60eecb0a9d1b1aa396be0b020de1f9311d08ea8db7caa2e7034d",
+				"dweb:/ipfs/Qmb1Hcm8ZG8UgyL5pCChq9ZY3Xw7u8sjLXkQ9svzpprMZx"
+			]
+		},
+		"contracts/structs/MPStructs.sol": {
+			"keccak256": "0xeec22747f8e03ed69b4b76f93747501634aa75fad8b9fc3bfa03ea44f24cd3c4",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://a8b131e8a8367e53776cf052b53aa63bb5207066596a60fb0af9a02ed146e2e7",
+				"dweb:/ipfs/QmfQvHvzvhVno2cxfyY9CfAJWwGnBQBBYrF8FVEo78dx2a"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,187 @@
+{
+	"compiler": {
+		"version": "0.8.29+commit.ab55807c"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "getMProductIds",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "_mProductIds",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productId",
+						"type": "uint256"
+					}
+				],
+				"name": "getProduct",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "provider",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "pensionCurrencyErc20",
+								"type": "address"
+							},
+							{
+								"internalType": "enum RiskType",
+								"name": "riskType",
+								"type": "uint8"
+							},
+							{
+								"internalType": "enum TreasuryType",
+								"name": "treasuryType",
+								"type": "uint8"
+							},
+							{
+								"components": [
+									{
+										"internalType": "enum Schedule",
+										"name": "schedule",
+										"type": "uint8"
+									},
+									{
+										"internalType": "uint256",
+										"name": "term",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "minimumAmount",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "maximumAmount",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "totalIntervals",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "totalAmount",
+										"type": "uint256"
+									}
+								],
+								"internalType": "struct FinancialSchedule",
+								"name": "paymentSchedule",
+								"type": "tuple"
+							},
+							{
+								"components": [
+									{
+										"internalType": "enum Schedule",
+										"name": "schedule",
+										"type": "uint8"
+									},
+									{
+										"internalType": "uint256",
+										"name": "term",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "minimumAmount",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "maximumAmount",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "totalIntervals",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "totalAmount",
+										"type": "uint256"
+									}
+								],
+								"internalType": "struct FinancialSchedule",
+								"name": "emissionSchedule",
+								"type": "tuple"
+							}
+						],
+						"internalType": "struct MPProduct",
+						"name": "_product",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/IMPProduct.sol": "IMPProductManager"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/IMPProduct.sol": {
+			"keccak256": "0x04faec16e80c14da7193ebc54c37e4975254301c3399ce5fffe77309a372117e",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://1c44e16b14d524689cc1fc9e97ea94ab71b81e723b2f584715357c423231e09a",
+				"dweb:/ipfs/QmcVU1mF9VfcMujYkKAjUDtzxt1fAgbV2DpHNMppXetxfn"
+			]
+		},
+		"contracts/structs/MPStructs.sol": {
+			"keccak256": "0x9f8eb1254a8bf9248b83c66b684358d5369403749e825489791444ecd33d2e9d",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://b3c8d1aaeb37387a63d6743d510c30cb010ce4480d47338906e3aada7e94605c",
+				"dweb:/ipfs/QmS9LG63uxmR8XZs2t8zn3Z2CJ6CLsoK3sbLgPyHdsUfuH"
+			]
+		}
+	},
+	"version": 1
+}

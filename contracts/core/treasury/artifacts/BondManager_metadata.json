@@ -1,0 +1,371 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_register",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "getAllowedBondTokens",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "_erc20",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_bondId",
+						"type": "uint256"
+					}
+				],
+				"name": "getBondById",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "erc20",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "created",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum BondType",
+								"name": "bType",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct SecurityBond",
+						"name": "_bond",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum BondType",
+						"name": "_type",
+						"type": "uint8"
+					},
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"name": "getUserBond",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "erc20",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "created",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum BondType",
+								"name": "bType",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct SecurityBond",
+						"name": "_bond",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getVersion",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_version",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum BondType",
+						"name": "_type",
+						"type": "uint8"
+					},
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"name": "hasBond",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "_hasBondType",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum BondType",
+						"name": "_type",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_erc20",
+						"type": "address"
+					}
+				],
+				"name": "placeBond",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_bondId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_bondId",
+						"type": "uint256"
+					}
+				],
+				"name": "releaseBond",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "_erc20s",
+						"type": "address[]"
+					}
+				],
+				"name": "setAllowedBondTokens",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "_set",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/core/treasury/MPBondManager.sol": "BondManager"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xe06a3f08a987af6ad2e1c1e774405d4fe08f1694b67517438b467cecf0da0ef7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://df6f0c459663c9858b6cba2cda1d14a7d05a985bed6d2de72bd8e78c25ee79db",
+				"dweb:/ipfs/QmeTTxZ7qVk9rjEv2R4CpCwdf8UMCcRqDNMvzNxHc3Fnn9"
+			]
+		},
+		"contracts/core/treasury/MPBondManager.sol": {
+			"keccak256": "0x2639d59f1c7cb361a5ff78346bef30a869b952ff18ffbbff039a9275a68417b7",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://e76c704354c95e0328f7baeaab72cb9d10e8ea07ec7104a4435132a797a803a3",
+				"dweb:/ipfs/QmXKdC3zGx4ETJ7DBpHsEdrRbEnXYz7UekoCs3yjA3SXdH"
+			]
+		},
+		"contracts/interfaces/market/IMPMarketManager.sol": {
+			"keccak256": "0x45fb492f0634f104c71eceb5d57f7a6b4056b8a3aa27ff02d266ae689c6c7b0b",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://eac6b1dd4110f1d672f7b40c2d5827c70773edfe27d9e0179b88ece0dcc6ee7e",
+				"dweb:/ipfs/QmWD9xR2Rac52xseGbwTzy6CCZFkzKqkdp77n8RZoLBbjz"
+			]
+		},
+		"contracts/interfaces/treasury/IMPTreasury.sol": {
+			"keccak256": "0xd591c31460bc8bb5e27d4176f3ed2ba82dcba82e369cb6803ba62362ba00500c",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://60f4ef1b04b81bae8a9bbbd6741d4ef7379f395d9aaec4150840b1028661ca40",
+				"dweb:/ipfs/QmWM2KRGRh86Mf8HPHc3neXRnsMsiP5GbVhSZzUWbULcDU"
+			]
+		},
+		"contracts/interfaces/util/IMPBondManager.sol": {
+			"keccak256": "0x1cbd5cf233f22bd39d5fc3d3d700336870a55889411682a386a84e2d91da9979",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://955f711e093d641673b617049e3ca908dea5e4e6022bbf324ca87f16e5290ca7",
+				"dweb:/ipfs/QmYUfBAsboB4PtWvy9bTkUBVPYqBVzrexJ6ka9575SynRq"
+			]
+		},
+		"contracts/interfaces/util/IMPTxManager.sol": {
+			"keccak256": "0xb2661b9da60f8a483054001232cae554bfb617df3868c135b754b939a3dcd3d4",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://62fa28535ff5723e73ce44028fa21fce22c0e6c7e3df58db0124337d0d5cd7f0",
+				"dweb:/ipfs/QmQiGQRH5ixRbGWKynpzJAjwhUpjosNo7pLpGuVGWGCBzM"
+			]
+		},
+		"contracts/interfaces/util/IRegister.sol": {
+			"keccak256": "0x2728fc17d66438db568f764b1a39dde3bc911b1246a8f31182e9a05b76e7ea8f",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://d172d51d432ac26a6d44d116d967347055fdc5cc77f98836caf735dd4f331067",
+				"dweb:/ipfs/QmaJSHMHZmppZWHMJqqNXsF8BWj1wToJvWuewBuJSLLKTg"
+			]
+		},
+		"contracts/interfaces/util/IVersion.sol": {
+			"keccak256": "0x2b1635fee7f38a02aff4dfe8c66655df3b198ca74b1455e5977304cf003b6a12",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://71969e06b2ea2b0736e26788f197970e20b0510a4e11d5190f33353b40a92a79",
+				"dweb:/ipfs/QmR5zgEhoib45vCiE7wQ37kLxoC6RZeZfDb9jxe6xK5VYb"
+			]
+		},
+		"contracts/lib/MPLib.sol": {
+			"keccak256": "0x7a43996d4f78f2ba87e16f45d71e35df34879dbf0abb0dd528e8d6d4a70e32d9",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://6d8e3e60ed30604a423b9c36b473c635b1831a0a66aa711353fdb13dcaf3c5bd",
+				"dweb:/ipfs/QmZCdFkpd3CHxcuZZAQnAXbt4fCu94Y7MjPWXkVaTiBEfZ"
+			]
+		},
+		"contracts/structs/MPStructs.sol": {
+			"keccak256": "0x7e2b3a6bb78d9d9b9d78cd2cb599d4397b2d22f8868277b77764ba8e4eac824c",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://f5f039783228f7d05e3dcd44059e8b99e183ca4f4449d6d79274237ea01f583a",
+				"dweb:/ipfs/QmYEMUKF48v7ohkYXwYB1S2qAMr2q1xY3FhEmsR5GyDRtP"
+			]
+		}
+	},
+	"version": 1
+}

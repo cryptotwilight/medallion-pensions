@@ -1,0 +1,3869 @@
+{
+	"id": "e99d2d84c8d8209b205f35a48ac61ee7",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.30",
+	"solcLongVersion": "0.8.30+commit.73712a01",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"contracts/interfaces/IMedalionPensions.sol": {
+				"content": "// SPDX-License-Identifier: GPL-3.0\r\n\r\npragma solidity >=0.8.2 <0.9.0;\r\n\r\nimport \"../structs/MPStructs.sol\"; \r\n\r\ninterface IMedallionPensions { \r\n\r\n    function getFee(string memory _feeName) view external returns (uint256 _amount); \r\n\r\n    function getPension(uint256 _id) view external returns (MPension memory _pension); \r\n\r\n    function getPension() view external returns (MPension memory _pension); \r\n\r\n    function createPension(ProtoPension memory _pPension) payable external returns (address _vault, uint256 _txId);\r\n\r\n}"
+			},
+			"contracts/structs/MPStructs.sol": {
+				"content": "// SPDX-License-Identifier: GPL-3.0\r\n\r\npragma solidity >=0.8.2 <0.9.0;\r\n\r\nenum MPStatus {OPEN, DISBURSEMENT, CLOSED, FROZEN}\r\nenum MPScheduleStatus {MATURED/**no further payments remaining*/, SETTLED /** no further emissions remaining */}\r\n\r\nstruct ProtoPension { \r\n    address owner; \r\n    uint256 productId; \r\n}\r\n\r\nstruct MPension { \r\n    uint256 id; \r\n    address creator; \r\n    address owner; \r\n    address treasury; \r\n    address vault; \r\n    uint256 maturityDate; \r\n    uint256 dissolutionDate; \r\n    MPProduct product; \r\n}\r\n\r\nstruct MPProduct { \r\n    uint256 id; \r\n    address provider; \r\n    address erc20; \r\n    uint256 totalContribution; \r\n    uint256 principalOnMaturity; \r\n    uint256 interest; \r\n    RiskType riskType; \r\n    address treasury;\r\n    FinancialSchedule contributionSchedule; \r\n    FinancialSchedule emissionSchedule; \r\n    Tolerance tolerance; \r\n    uint256 createdDate; \r\n    uint256 expiryDate; \r\n    uint256 units; \r\n}\r\n\r\nstruct MProtoProduct{ \r\n    address pensionCurrencyErc20; \r\n    RiskType riskType; \r\n    address treasury; \r\n    uint256 totalContribution; \r\n    uint256 principalOnMaturity; \r\n    uint256 interest; \r\n    FinancialSchedule contributionSchedule; \r\n    FinancialSchedule emissionSchedule;\r\n    Tolerance tolerance; \r\n    uint256 lifespan; \r\n    uint256 units; \r\n}\r\n\r\n// Money manager bond\r\n\r\nstruct SecurityBond { \r\n    uint256 id; \r\n    address owner; \r\n    uint256 amount; \r\n    address erc20; \r\n    address created; \r\n}\r\n\r\nstruct ProtoSecurityBond { \r\n    address owner; \r\n    uint256 amount; \r\n    address erc20; \r\n}\r\n\r\nstruct Market { \r\n    uint256 id; \r\n    address owner; \r\n    RiskType riskType; \r\n    address fromToken;\r\n    address toToken;\r\n    uint256 minDuration; \r\n    uint256 maxDuration; \r\n    uint256 minReturn; \r\n    uint256 maxSlots; \r\n    uint256 marketBondAmount; \r\n    address marketBondErc20;\r\n    uint256 createDate; \r\n    uint256 expiryDate; \r\n    uint256 finalExitDate; \r\n    uint256 bondId; \r\n}\r\n\r\nenum ObjType {PENSION, MARKET, TREASURY, POSITION, BOND, PRODUCT}\r\n\r\nenum RiskType {HIGH, MEDIUM, LOW}\r\n\r\nenum Schedule {DAILY, WEEKLY, MONTHLY, QUARTERLY}\r\n\r\nstruct FinancialSchedule { \r\n    Schedule schedule; \r\n    uint256 term; \r\n    uint256 minimumAmount; \r\n    uint256 maximumAmount;\r\n    uint256 totalIntervals; \r\n    uint256 totalAmount; \r\n}\r\n\r\nstruct Tolerance { \r\n    uint256 maxGainPercentage; \r\n    uint256 maxLossPercentage; \r\n}\r\n\r\nenum PositionStatus {OPEN, CLOSED}\r\n\r\nstruct Position { \r\n    uint256 id; \r\n    PositionStatus status; \r\n    uint256 mPensionId; \r\n    uint256 amount; \r\n    uint256 created; \r\n    Tolerance tolerance; \r\n    address market; \r\n}\r\n\r\nenum TxType {CREATE, CONTRIBUTE, DRAWDOWN, PULL, PUSh, INVEST, DIVEST, CLOSE, EXPIRE, UPDATE}\r\n\r\nstruct Tx { \r\n    uint256 id; \r\n    TxType txType; \r\n    address location; \r\n    uint256 entityId; \r\n    uint256 date; \r\n    uint256 amount; \r\n    address erc20; \r\n}"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"contracts": {
+			"contracts/interfaces/IMedalionPensions.sol": {
+				"IMedallionPensions": {
+					"abi": [
+						{
+							"inputs": [
+								{
+									"components": [
+										{
+											"internalType": "address",
+											"name": "owner",
+											"type": "address"
+										},
+										{
+											"internalType": "uint256",
+											"name": "productId",
+											"type": "uint256"
+										}
+									],
+									"internalType": "struct ProtoPension",
+									"name": "_pPension",
+									"type": "tuple"
+								}
+							],
+							"name": "createPension",
+							"outputs": [
+								{
+									"internalType": "address",
+									"name": "_vault",
+									"type": "address"
+								},
+								{
+									"internalType": "uint256",
+									"name": "_txId",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "payable",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "string",
+									"name": "_feeName",
+									"type": "string"
+								}
+							],
+							"name": "getFee",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "_amount",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "getPension",
+							"outputs": [
+								{
+									"components": [
+										{
+											"internalType": "uint256",
+											"name": "id",
+											"type": "uint256"
+										},
+										{
+											"internalType": "address",
+											"name": "creator",
+											"type": "address"
+										},
+										{
+											"internalType": "address",
+											"name": "owner",
+											"type": "address"
+										},
+										{
+											"internalType": "address",
+											"name": "treasury",
+											"type": "address"
+										},
+										{
+											"internalType": "address",
+											"name": "vault",
+											"type": "address"
+										},
+										{
+											"internalType": "uint256",
+											"name": "maturityDate",
+											"type": "uint256"
+										},
+										{
+											"internalType": "uint256",
+											"name": "dissolutionDate",
+											"type": "uint256"
+										},
+										{
+											"components": [
+												{
+													"internalType": "uint256",
+													"name": "id",
+													"type": "uint256"
+												},
+												{
+													"internalType": "address",
+													"name": "provider",
+													"type": "address"
+												},
+												{
+													"internalType": "address",
+													"name": "erc20",
+													"type": "address"
+												},
+												{
+													"internalType": "uint256",
+													"name": "totalContribution",
+													"type": "uint256"
+												},
+												{
+													"internalType": "uint256",
+													"name": "principalOnMaturity",
+													"type": "uint256"
+												},
+												{
+													"internalType": "uint256",
+													"name": "interest",
+													"type": "uint256"
+												},
+												{
+													"internalType": "enum RiskType",
+													"name": "riskType",
+													"type": "uint8"
+												},
+												{
+													"internalType": "address",
+													"name": "treasury",
+													"type": "address"
+												},
+												{
+													"components": [
+														{
+															"internalType": "enum Schedule",
+															"name": "schedule",
+															"type": "uint8"
+														},
+														{
+															"internalType": "uint256",
+															"name": "term",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "minimumAmount",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "maximumAmount",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "totalIntervals",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "totalAmount",
+															"type": "uint256"
+														}
+													],
+													"internalType": "struct FinancialSchedule",
+													"name": "contributionSchedule",
+													"type": "tuple"
+												},
+												{
+													"components": [
+														{
+															"internalType": "enum Schedule",
+															"name": "schedule",
+															"type": "uint8"
+														},
+														{
+															"internalType": "uint256",
+															"name": "term",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "minimumAmount",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "maximumAmount",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "totalIntervals",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "totalAmount",
+															"type": "uint256"
+														}
+													],
+													"internalType": "struct FinancialSchedule",
+													"name": "emissionSchedule",
+													"type": "tuple"
+												},
+												{
+													"components": [
+														{
+															"internalType": "uint256",
+															"name": "maxGainPercentage",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "maxLossPercentage",
+															"type": "uint256"
+														}
+													],
+													"internalType": "struct Tolerance",
+													"name": "tolerance",
+													"type": "tuple"
+												},
+												{
+													"internalType": "uint256",
+													"name": "createdDate",
+													"type": "uint256"
+												},
+												{
+													"internalType": "uint256",
+													"name": "expiryDate",
+													"type": "uint256"
+												},
+												{
+													"internalType": "uint256",
+													"name": "units",
+													"type": "uint256"
+												}
+											],
+											"internalType": "struct MPProduct",
+											"name": "product",
+											"type": "tuple"
+										}
+									],
+									"internalType": "struct MPension",
+									"name": "_pension",
+									"type": "tuple"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "uint256",
+									"name": "_id",
+									"type": "uint256"
+								}
+							],
+							"name": "getPension",
+							"outputs": [
+								{
+									"components": [
+										{
+											"internalType": "uint256",
+											"name": "id",
+											"type": "uint256"
+										},
+										{
+											"internalType": "address",
+											"name": "creator",
+											"type": "address"
+										},
+										{
+											"internalType": "address",
+											"name": "owner",
+											"type": "address"
+										},
+										{
+											"internalType": "address",
+											"name": "treasury",
+											"type": "address"
+										},
+										{
+											"internalType": "address",
+											"name": "vault",
+											"type": "address"
+										},
+										{
+											"internalType": "uint256",
+											"name": "maturityDate",
+											"type": "uint256"
+										},
+										{
+											"internalType": "uint256",
+											"name": "dissolutionDate",
+											"type": "uint256"
+										},
+										{
+											"components": [
+												{
+													"internalType": "uint256",
+													"name": "id",
+													"type": "uint256"
+												},
+												{
+													"internalType": "address",
+													"name": "provider",
+													"type": "address"
+												},
+												{
+													"internalType": "address",
+													"name": "erc20",
+													"type": "address"
+												},
+												{
+													"internalType": "uint256",
+													"name": "totalContribution",
+													"type": "uint256"
+												},
+												{
+													"internalType": "uint256",
+													"name": "principalOnMaturity",
+													"type": "uint256"
+												},
+												{
+													"internalType": "uint256",
+													"name": "interest",
+													"type": "uint256"
+												},
+												{
+													"internalType": "enum RiskType",
+													"name": "riskType",
+													"type": "uint8"
+												},
+												{
+													"internalType": "address",
+													"name": "treasury",
+													"type": "address"
+												},
+												{
+													"components": [
+														{
+															"internalType": "enum Schedule",
+															"name": "schedule",
+															"type": "uint8"
+														},
+														{
+															"internalType": "uint256",
+															"name": "term",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "minimumAmount",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "maximumAmount",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "totalIntervals",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "totalAmount",
+															"type": "uint256"
+														}
+													],
+													"internalType": "struct FinancialSchedule",
+													"name": "contributionSchedule",
+													"type": "tuple"
+												},
+												{
+													"components": [
+														{
+															"internalType": "enum Schedule",
+															"name": "schedule",
+															"type": "uint8"
+														},
+														{
+															"internalType": "uint256",
+															"name": "term",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "minimumAmount",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "maximumAmount",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "totalIntervals",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "totalAmount",
+															"type": "uint256"
+														}
+													],
+													"internalType": "struct FinancialSchedule",
+													"name": "emissionSchedule",
+													"type": "tuple"
+												},
+												{
+													"components": [
+														{
+															"internalType": "uint256",
+															"name": "maxGainPercentage",
+															"type": "uint256"
+														},
+														{
+															"internalType": "uint256",
+															"name": "maxLossPercentage",
+															"type": "uint256"
+														}
+													],
+													"internalType": "struct Tolerance",
+													"name": "tolerance",
+													"type": "tuple"
+												},
+												{
+													"internalType": "uint256",
+													"name": "createdDate",
+													"type": "uint256"
+												},
+												{
+													"internalType": "uint256",
+													"name": "expiryDate",
+													"type": "uint256"
+												},
+												{
+													"internalType": "uint256",
+													"name": "units",
+													"type": "uint256"
+												}
+											],
+											"internalType": "struct MPProduct",
+											"name": "product",
+											"type": "tuple"
+										}
+									],
+									"internalType": "struct MPension",
+									"name": "_pension",
+									"type": "tuple"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						}
+					],
+					"devdoc": {
+						"kind": "dev",
+						"methods": {},
+						"version": 1
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"immutableReferences": {},
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {
+							"createPension((address,uint256))": "bacba5f6",
+							"getFee(string)": "ed1eee68",
+							"getPension()": "73488018",
+							"getPension(uint256)": "77bdfdf2"
+						}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.8.30+commit.73712a01\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"productId\",\"type\":\"uint256\"}],\"internalType\":\"struct ProtoPension\",\"name\":\"_pPension\",\"type\":\"tuple\"}],\"name\":\"createPension\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"_vault\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_txId\",\"type\":\"uint256\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_feeName\",\"type\":\"string\"}],\"name\":\"getFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getPension\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"creator\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"treasury\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"vault\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"maturityDate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"dissolutionDate\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"provider\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"erc20\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"totalContribution\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"principalOnMaturity\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"interest\",\"type\":\"uint256\"},{\"internalType\":\"enum RiskType\",\"name\":\"riskType\",\"type\":\"uint8\"},{\"internalType\":\"address\",\"name\":\"treasury\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"enum Schedule\",\"name\":\"schedule\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"term\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"minimumAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maximumAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalIntervals\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalAmount\",\"type\":\"uint256\"}],\"internalType\":\"struct FinancialSchedule\",\"name\":\"contributionSchedule\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"enum Schedule\",\"name\":\"schedule\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"term\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"minimumAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maximumAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalIntervals\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalAmount\",\"type\":\"uint256\"}],\"internalType\":\"struct FinancialSchedule\",\"name\":\"emissionSchedule\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"maxGainPercentage\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxLossPercentage\",\"type\":\"uint256\"}],\"internalType\":\"struct Tolerance\",\"name\":\"tolerance\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"createdDate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"expiryDate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"units\",\"type\":\"uint256\"}],\"internalType\":\"struct MPProduct\",\"name\":\"product\",\"type\":\"tuple\"}],\"internalType\":\"struct MPension\",\"name\":\"_pension\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"getPension\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"creator\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"treasury\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"vault\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"maturityDate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"dissolutionDate\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"provider\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"erc20\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"totalContribution\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"principalOnMaturity\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"interest\",\"type\":\"uint256\"},{\"internalType\":\"enum RiskType\",\"name\":\"riskType\",\"type\":\"uint8\"},{\"internalType\":\"address\",\"name\":\"treasury\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"enum Schedule\",\"name\":\"schedule\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"term\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"minimumAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maximumAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalIntervals\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalAmount\",\"type\":\"uint256\"}],\"internalType\":\"struct FinancialSchedule\",\"name\":\"contributionSchedule\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"enum Schedule\",\"name\":\"schedule\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"term\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"minimumAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maximumAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalIntervals\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalAmount\",\"type\":\"uint256\"}],\"internalType\":\"struct FinancialSchedule\",\"name\":\"emissionSchedule\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"maxGainPercentage\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxLossPercentage\",\"type\":\"uint256\"}],\"internalType\":\"struct Tolerance\",\"name\":\"tolerance\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"createdDate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"expiryDate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"units\",\"type\":\"uint256\"}],\"internalType\":\"struct MPProduct\",\"name\":\"product\",\"type\":\"tuple\"}],\"internalType\":\"struct MPension\",\"name\":\"_pension\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/interfaces/IMedalionPensions.sol\":\"IMedallionPensions\"},\"evmVersion\":\"prague\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/interfaces/IMedalionPensions.sol\":{\"keccak256\":\"0x1f6ed2ae1231b21c12f1b3c55de62b31c89ddbe9952070ccbd2391503ea296fc\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://6fb055b6c0aa9ff1b932161141abaee6cd48d367c0d940194fd0f4fef261c41a\",\"dweb:/ipfs/QmXUWNuDb3nuS4vuC5GoUGwHrJ32JrEyiDZGVEzc9NMhFr\"]},\"contracts/structs/MPStructs.sol\":{\"keccak256\":\"0xb0fe61d17a77cb8580dc1dd8ceff2a81c9f623686d6b81581b004dbbbbbbe4f8\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://1b6dc7cf596fd0b305e343b3fa19a07b12233ecc92a7402e5a5581f20cae0d33\",\"dweb:/ipfs/QmTFbJoa7AJMtJB7RnucnLvqbr6qbCqnLvhrYDqCYGoADS\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"kind": "user",
+						"methods": {},
+						"version": 1
+					}
+				}
+			}
+		},
+		"sources": {
+			"contracts/interfaces/IMedalionPensions.sol": {
+				"ast": {
+					"absolutePath": "contracts/interfaces/IMedalionPensions.sol",
+					"exportedSymbols": {
+						"FinancialSchedule": [
+							207
+						],
+						"IMedallionPensions": [
+							34
+						],
+						"MPProduct": [
+							100
+						],
+						"MPScheduleStatus": [
+							44
+						],
+						"MPStatus": [
+							41
+						],
+						"MPension": [
+							67
+						],
+						"MProtoProduct": [
+							127
+						],
+						"Market": [
+							177
+						],
+						"ObjType": [
+							184
+						],
+						"Position": [
+							232
+						],
+						"PositionStatus": [
+							215
+						],
+						"ProtoPension": [
+							49
+						],
+						"ProtoSecurityBond": [
+							145
+						],
+						"RiskType": [
+							188
+						],
+						"Schedule": [
+							193
+						],
+						"SecurityBond": [
+							138
+						],
+						"Tolerance": [
+							212
+						],
+						"Tx": [
+							259
+						],
+						"TxType": [
+							243
+						]
+					},
+					"id": 35,
+					"license": "GPL-3.0",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								">=",
+								"0.8",
+								".2",
+								"<",
+								"0.9",
+								".0"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "39:31:0"
+						},
+						{
+							"absolutePath": "contracts/structs/MPStructs.sol",
+							"file": "../structs/MPStructs.sol",
+							"id": 2,
+							"nameLocation": "-1:-1:-1",
+							"nodeType": "ImportDirective",
+							"scope": 35,
+							"sourceUnit": 260,
+							"src": "74:34:0",
+							"symbolAliases": [],
+							"unitAlias": ""
+						},
+						{
+							"abstract": false,
+							"baseContracts": [],
+							"canonicalName": "IMedallionPensions",
+							"contractDependencies": [],
+							"contractKind": "interface",
+							"fullyImplemented": false,
+							"id": 34,
+							"linearizedBaseContracts": [
+								34
+							],
+							"name": "IMedallionPensions",
+							"nameLocation": "123:18:0",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"functionSelector": "ed1eee68",
+									"id": 9,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getFee",
+									"nameLocation": "161:6:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 5,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 4,
+												"mutability": "mutable",
+												"name": "_feeName",
+												"nameLocation": "182:8:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 9,
+												"src": "168:22:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_string_memory_ptr",
+													"typeString": "string"
+												},
+												"typeName": {
+													"id": 3,
+													"name": "string",
+													"nodeType": "ElementaryTypeName",
+													"src": "168:6:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_string_storage_ptr",
+														"typeString": "string"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "167:24:0"
+									},
+									"returnParameters": {
+										"id": 8,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 7,
+												"mutability": "mutable",
+												"name": "_amount",
+												"nameLocation": "223:7:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 9,
+												"src": "215:15:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 6,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "215:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "214:17:0"
+									},
+									"scope": 34,
+									"src": "152:80:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "77bdfdf2",
+									"id": 17,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getPension",
+									"nameLocation": "250:10:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 12,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 11,
+												"mutability": "mutable",
+												"name": "_id",
+												"nameLocation": "269:3:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 17,
+												"src": "261:11:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 10,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "261:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "260:13:0"
+									},
+									"returnParameters": {
+										"id": 16,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 15,
+												"mutability": "mutable",
+												"name": "_pension",
+												"nameLocation": "313:8:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 17,
+												"src": "297:24:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_struct$_MPension_$67_memory_ptr",
+													"typeString": "struct MPension"
+												},
+												"typeName": {
+													"id": 14,
+													"nodeType": "UserDefinedTypeName",
+													"pathNode": {
+														"id": 13,
+														"name": "MPension",
+														"nameLocations": [
+															"297:8:0"
+														],
+														"nodeType": "IdentifierPath",
+														"referencedDeclaration": 67,
+														"src": "297:8:0"
+													},
+													"referencedDeclaration": 67,
+													"src": "297:8:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_struct$_MPension_$67_storage_ptr",
+														"typeString": "struct MPension"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "296:26:0"
+									},
+									"scope": 34,
+									"src": "241:82:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "73488018",
+									"id": 23,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getPension",
+									"nameLocation": "341:10:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 18,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "351:2:0"
+									},
+									"returnParameters": {
+										"id": 22,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 21,
+												"mutability": "mutable",
+												"name": "_pension",
+												"nameLocation": "393:8:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 23,
+												"src": "377:24:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_struct$_MPension_$67_memory_ptr",
+													"typeString": "struct MPension"
+												},
+												"typeName": {
+													"id": 20,
+													"nodeType": "UserDefinedTypeName",
+													"pathNode": {
+														"id": 19,
+														"name": "MPension",
+														"nameLocations": [
+															"377:8:0"
+														],
+														"nodeType": "IdentifierPath",
+														"referencedDeclaration": 67,
+														"src": "377:8:0"
+													},
+													"referencedDeclaration": 67,
+													"src": "377:8:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_struct$_MPension_$67_storage_ptr",
+														"typeString": "struct MPension"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "376:26:0"
+									},
+									"scope": 34,
+									"src": "332:71:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "bacba5f6",
+									"id": 33,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "createPension",
+									"nameLocation": "421:13:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 27,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 26,
+												"mutability": "mutable",
+												"name": "_pPension",
+												"nameLocation": "455:9:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 33,
+												"src": "435:29:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_struct$_ProtoPension_$49_memory_ptr",
+													"typeString": "struct ProtoPension"
+												},
+												"typeName": {
+													"id": 25,
+													"nodeType": "UserDefinedTypeName",
+													"pathNode": {
+														"id": 24,
+														"name": "ProtoPension",
+														"nameLocations": [
+															"435:12:0"
+														],
+														"nodeType": "IdentifierPath",
+														"referencedDeclaration": 49,
+														"src": "435:12:0"
+													},
+													"referencedDeclaration": 49,
+													"src": "435:12:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_struct$_ProtoPension_$49_storage_ptr",
+														"typeString": "struct ProtoPension"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "434:31:0"
+									},
+									"returnParameters": {
+										"id": 32,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 29,
+												"mutability": "mutable",
+												"name": "_vault",
+												"nameLocation": "500:6:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 33,
+												"src": "492:14:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 28,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "492:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 31,
+												"mutability": "mutable",
+												"name": "_txId",
+												"nameLocation": "516:5:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 33,
+												"src": "508:13:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 30,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "508:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "491:31:0"
+									},
+									"scope": 34,
+									"src": "412:111:0",
+									"stateMutability": "payable",
+									"virtual": false,
+									"visibility": "external"
+								}
+							],
+							"scope": 35,
+							"src": "113:415:0",
+							"usedErrors": [],
+							"usedEvents": []
+						}
+					],
+					"src": "39:489:0"
+				},
+				"id": 0
+			},
+			"contracts/structs/MPStructs.sol": {
+				"ast": {
+					"absolutePath": "contracts/structs/MPStructs.sol",
+					"exportedSymbols": {
+						"FinancialSchedule": [
+							207
+						],
+						"MPProduct": [
+							100
+						],
+						"MPScheduleStatus": [
+							44
+						],
+						"MPStatus": [
+							41
+						],
+						"MPension": [
+							67
+						],
+						"MProtoProduct": [
+							127
+						],
+						"Market": [
+							177
+						],
+						"ObjType": [
+							184
+						],
+						"Position": [
+							232
+						],
+						"PositionStatus": [
+							215
+						],
+						"ProtoPension": [
+							49
+						],
+						"ProtoSecurityBond": [
+							145
+						],
+						"RiskType": [
+							188
+						],
+						"Schedule": [
+							193
+						],
+						"SecurityBond": [
+							138
+						],
+						"Tolerance": [
+							212
+						],
+						"Tx": [
+							259
+						],
+						"TxType": [
+							243
+						]
+					},
+					"id": 260,
+					"license": "GPL-3.0",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 36,
+							"literals": [
+								"solidity",
+								">=",
+								"0.8",
+								".2",
+								"<",
+								"0.9",
+								".0"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "39:31:1"
+						},
+						{
+							"canonicalName": "MPStatus",
+							"id": 41,
+							"members": [
+								{
+									"id": 37,
+									"name": "OPEN",
+									"nameLocation": "89:4:1",
+									"nodeType": "EnumValue",
+									"src": "89:4:1"
+								},
+								{
+									"id": 38,
+									"name": "DISBURSEMENT",
+									"nameLocation": "95:12:1",
+									"nodeType": "EnumValue",
+									"src": "95:12:1"
+								},
+								{
+									"id": 39,
+									"name": "CLOSED",
+									"nameLocation": "109:6:1",
+									"nodeType": "EnumValue",
+									"src": "109:6:1"
+								},
+								{
+									"id": 40,
+									"name": "FROZEN",
+									"nameLocation": "117:6:1",
+									"nodeType": "EnumValue",
+									"src": "117:6:1"
+								}
+							],
+							"name": "MPStatus",
+							"nameLocation": "79:8:1",
+							"nodeType": "EnumDefinition",
+							"src": "74:50:1"
+						},
+						{
+							"canonicalName": "MPScheduleStatus",
+							"id": 44,
+							"members": [
+								{
+									"id": 42,
+									"name": "MATURED",
+									"nameLocation": "149:7:1",
+									"nodeType": "EnumValue",
+									"src": "149:7:1"
+								},
+								{
+									"id": 43,
+									"name": "SETTLED",
+									"nameLocation": "192:7:1",
+									"nodeType": "EnumValue",
+									"src": "192:7:1"
+								}
+							],
+							"name": "MPScheduleStatus",
+							"nameLocation": "131:16:1",
+							"nodeType": "EnumDefinition",
+							"src": "126:112:1"
+						},
+						{
+							"canonicalName": "ProtoPension",
+							"id": 49,
+							"members": [
+								{
+									"constant": false,
+									"id": 46,
+									"mutability": "mutable",
+									"name": "owner",
+									"nameLocation": "278:5:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 49,
+									"src": "270:13:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 45,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "270:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 48,
+									"mutability": "mutable",
+									"name": "productId",
+									"nameLocation": "299:9:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 49,
+									"src": "291:17:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 47,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "291:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								}
+							],
+							"name": "ProtoPension",
+							"nameLocation": "249:12:1",
+							"nodeType": "StructDefinition",
+							"scope": 260,
+							"src": "242:71:1",
+							"visibility": "public"
+						},
+						{
+							"canonicalName": "MPension",
+							"id": 67,
+							"members": [
+								{
+									"constant": false,
+									"id": 51,
+									"mutability": "mutable",
+									"name": "id",
+									"nameLocation": "349:2:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 67,
+									"src": "341:10:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 50,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "341:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 53,
+									"mutability": "mutable",
+									"name": "creator",
+									"nameLocation": "367:7:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 67,
+									"src": "359:15:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 52,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "359:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 55,
+									"mutability": "mutable",
+									"name": "owner",
+									"nameLocation": "390:5:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 67,
+									"src": "382:13:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 54,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "382:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 57,
+									"mutability": "mutable",
+									"name": "treasury",
+									"nameLocation": "411:8:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 67,
+									"src": "403:16:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 56,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "403:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 59,
+									"mutability": "mutable",
+									"name": "vault",
+									"nameLocation": "435:5:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 67,
+									"src": "427:13:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 58,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "427:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 61,
+									"mutability": "mutable",
+									"name": "maturityDate",
+									"nameLocation": "456:12:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 67,
+									"src": "448:20:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 60,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "448:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 63,
+									"mutability": "mutable",
+									"name": "dissolutionDate",
+									"nameLocation": "484:15:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 67,
+									"src": "476:23:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 62,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "476:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 66,
+									"mutability": "mutable",
+									"name": "product",
+									"nameLocation": "517:7:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 67,
+									"src": "507:17:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_struct$_MPProduct_$100_storage_ptr",
+										"typeString": "struct MPProduct"
+									},
+									"typeName": {
+										"id": 65,
+										"nodeType": "UserDefinedTypeName",
+										"pathNode": {
+											"id": 64,
+											"name": "MPProduct",
+											"nameLocations": [
+												"507:9:1"
+											],
+											"nodeType": "IdentifierPath",
+											"referencedDeclaration": 100,
+											"src": "507:9:1"
+										},
+										"referencedDeclaration": 100,
+										"src": "507:9:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_struct$_MPProduct_$100_storage_ptr",
+											"typeString": "struct MPProduct"
+										}
+									},
+									"visibility": "internal"
+								}
+							],
+							"name": "MPension",
+							"nameLocation": "324:8:1",
+							"nodeType": "StructDefinition",
+							"scope": 260,
+							"src": "317:212:1",
+							"visibility": "public"
+						},
+						{
+							"canonicalName": "MPProduct",
+							"id": 100,
+							"members": [
+								{
+									"constant": false,
+									"id": 69,
+									"mutability": "mutable",
+									"name": "id",
+									"nameLocation": "566:2:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 100,
+									"src": "558:10:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 68,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "558:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 71,
+									"mutability": "mutable",
+									"name": "provider",
+									"nameLocation": "584:8:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 100,
+									"src": "576:16:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 70,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "576:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 73,
+									"mutability": "mutable",
+									"name": "erc20",
+									"nameLocation": "608:5:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 100,
+									"src": "600:13:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 72,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "600:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 75,
+									"mutability": "mutable",
+									"name": "totalContribution",
+									"nameLocation": "629:17:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 100,
+									"src": "621:25:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 74,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "621:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 77,
+									"mutability": "mutable",
+									"name": "principalOnMaturity",
+									"nameLocation": "662:19:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 100,
+									"src": "654:27:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 76,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "654:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 79,
+									"mutability": "mutable",
+									"name": "interest",
+									"nameLocation": "697:8:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 100,
+									"src": "689:16:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 78,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "689:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 82,
+									"mutability": "mutable",
+									"name": "riskType",
+									"nameLocation": "722:8:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 100,
+									"src": "713:17:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_enum$_RiskType_$188",
+										"typeString": "enum RiskType"
+									},
+									"typeName": {
+										"id": 81,
+										"nodeType": "UserDefinedTypeName",
+										"pathNode": {
+											"id": 80,
+											"name": "RiskType",
+											"nameLocations": [
+												"713:8:1"
+											],
+											"nodeType": "IdentifierPath",
+											"referencedDeclaration": 188,
+											"src": "713:8:1"
+										},
+										"referencedDeclaration": 188,
+										"src": "713:8:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_enum$_RiskType_$188",
+											"typeString": "enum RiskType"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 84,
+									"mutability": "mutable",
+									"name": "treasury",
+									"nameLocation": "746:8:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 100,
+									"src": "738:16:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 83,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "738:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 87,
+									"mutability": "mutable",
+									"name": "contributionSchedule",
+									"nameLocation": "779:20:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 100,
+									"src": "761:38:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_struct$_FinancialSchedule_$207_storage_ptr",
+										"typeString": "struct FinancialSchedule"
+									},
+									"typeName": {
+										"id": 86,
+										"nodeType": "UserDefinedTypeName",
+										"pathNode": {
+											"id": 85,
+											"name": "FinancialSchedule",
+											"nameLocations": [
+												"761:17:1"
+											],
+											"nodeType": "IdentifierPath",
+											"referencedDeclaration": 207,
+											"src": "761:17:1"
+										},
+										"referencedDeclaration": 207,
+										"src": "761:17:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_struct$_FinancialSchedule_$207_storage_ptr",
+											"typeString": "struct FinancialSchedule"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 90,
+									"mutability": "mutable",
+									"name": "emissionSchedule",
+									"nameLocation": "825:16:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 100,
+									"src": "807:34:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_struct$_FinancialSchedule_$207_storage_ptr",
+										"typeString": "struct FinancialSchedule"
+									},
+									"typeName": {
+										"id": 89,
+										"nodeType": "UserDefinedTypeName",
+										"pathNode": {
+											"id": 88,
+											"name": "FinancialSchedule",
+											"nameLocations": [
+												"807:17:1"
+											],
+											"nodeType": "IdentifierPath",
+											"referencedDeclaration": 207,
+											"src": "807:17:1"
+										},
+										"referencedDeclaration": 207,
+										"src": "807:17:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_struct$_FinancialSchedule_$207_storage_ptr",
+											"typeString": "struct FinancialSchedule"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 93,
+									"mutability": "mutable",
+									"name": "tolerance",
+									"nameLocation": "859:9:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 100,
+									"src": "849:19:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_struct$_Tolerance_$212_storage_ptr",
+										"typeString": "struct Tolerance"
+									},
+									"typeName": {
+										"id": 92,
+										"nodeType": "UserDefinedTypeName",
+										"pathNode": {
+											"id": 91,
+											"name": "Tolerance",
+											"nameLocations": [
+												"849:9:1"
+											],
+											"nodeType": "IdentifierPath",
+											"referencedDeclaration": 212,
+											"src": "849:9:1"
+										},
+										"referencedDeclaration": 212,
+										"src": "849:9:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_struct$_Tolerance_$212_storage_ptr",
+											"typeString": "struct Tolerance"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 95,
+									"mutability": "mutable",
+									"name": "createdDate",
+									"nameLocation": "884:11:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 100,
+									"src": "876:19:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 94,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "876:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 97,
+									"mutability": "mutable",
+									"name": "expiryDate",
+									"nameLocation": "911:10:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 100,
+									"src": "903:18:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 96,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "903:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 99,
+									"mutability": "mutable",
+									"name": "units",
+									"nameLocation": "937:5:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 100,
+									"src": "929:13:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 98,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "929:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								}
+							],
+							"name": "MPProduct",
+							"nameLocation": "540:9:1",
+							"nodeType": "StructDefinition",
+							"scope": 260,
+							"src": "533:414:1",
+							"visibility": "public"
+						},
+						{
+							"canonicalName": "MProtoProduct",
+							"id": 127,
+							"members": [
+								{
+									"constant": false,
+									"id": 102,
+									"mutability": "mutable",
+									"name": "pensionCurrencyErc20",
+									"nameLocation": "987:20:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 127,
+									"src": "979:28:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 101,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "979:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 105,
+									"mutability": "mutable",
+									"name": "riskType",
+									"nameLocation": "1024:8:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 127,
+									"src": "1015:17:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_enum$_RiskType_$188",
+										"typeString": "enum RiskType"
+									},
+									"typeName": {
+										"id": 104,
+										"nodeType": "UserDefinedTypeName",
+										"pathNode": {
+											"id": 103,
+											"name": "RiskType",
+											"nameLocations": [
+												"1015:8:1"
+											],
+											"nodeType": "IdentifierPath",
+											"referencedDeclaration": 188,
+											"src": "1015:8:1"
+										},
+										"referencedDeclaration": 188,
+										"src": "1015:8:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_enum$_RiskType_$188",
+											"typeString": "enum RiskType"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 107,
+									"mutability": "mutable",
+									"name": "treasury",
+									"nameLocation": "1048:8:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 127,
+									"src": "1040:16:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 106,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "1040:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 109,
+									"mutability": "mutable",
+									"name": "totalContribution",
+									"nameLocation": "1072:17:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 127,
+									"src": "1064:25:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 108,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1064:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 111,
+									"mutability": "mutable",
+									"name": "principalOnMaturity",
+									"nameLocation": "1105:19:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 127,
+									"src": "1097:27:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 110,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1097:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 113,
+									"mutability": "mutable",
+									"name": "interest",
+									"nameLocation": "1140:8:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 127,
+									"src": "1132:16:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 112,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1132:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 116,
+									"mutability": "mutable",
+									"name": "contributionSchedule",
+									"nameLocation": "1174:20:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 127,
+									"src": "1156:38:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_struct$_FinancialSchedule_$207_storage_ptr",
+										"typeString": "struct FinancialSchedule"
+									},
+									"typeName": {
+										"id": 115,
+										"nodeType": "UserDefinedTypeName",
+										"pathNode": {
+											"id": 114,
+											"name": "FinancialSchedule",
+											"nameLocations": [
+												"1156:17:1"
+											],
+											"nodeType": "IdentifierPath",
+											"referencedDeclaration": 207,
+											"src": "1156:17:1"
+										},
+										"referencedDeclaration": 207,
+										"src": "1156:17:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_struct$_FinancialSchedule_$207_storage_ptr",
+											"typeString": "struct FinancialSchedule"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 119,
+									"mutability": "mutable",
+									"name": "emissionSchedule",
+									"nameLocation": "1220:16:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 127,
+									"src": "1202:34:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_struct$_FinancialSchedule_$207_storage_ptr",
+										"typeString": "struct FinancialSchedule"
+									},
+									"typeName": {
+										"id": 118,
+										"nodeType": "UserDefinedTypeName",
+										"pathNode": {
+											"id": 117,
+											"name": "FinancialSchedule",
+											"nameLocations": [
+												"1202:17:1"
+											],
+											"nodeType": "IdentifierPath",
+											"referencedDeclaration": 207,
+											"src": "1202:17:1"
+										},
+										"referencedDeclaration": 207,
+										"src": "1202:17:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_struct$_FinancialSchedule_$207_storage_ptr",
+											"typeString": "struct FinancialSchedule"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 122,
+									"mutability": "mutable",
+									"name": "tolerance",
+									"nameLocation": "1253:9:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 127,
+									"src": "1243:19:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_struct$_Tolerance_$212_storage_ptr",
+										"typeString": "struct Tolerance"
+									},
+									"typeName": {
+										"id": 121,
+										"nodeType": "UserDefinedTypeName",
+										"pathNode": {
+											"id": 120,
+											"name": "Tolerance",
+											"nameLocations": [
+												"1243:9:1"
+											],
+											"nodeType": "IdentifierPath",
+											"referencedDeclaration": 212,
+											"src": "1243:9:1"
+										},
+										"referencedDeclaration": 212,
+										"src": "1243:9:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_struct$_Tolerance_$212_storage_ptr",
+											"typeString": "struct Tolerance"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 124,
+									"mutability": "mutable",
+									"name": "lifespan",
+									"nameLocation": "1278:8:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 127,
+									"src": "1270:16:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 123,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1270:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 126,
+									"mutability": "mutable",
+									"name": "units",
+									"nameLocation": "1302:5:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 127,
+									"src": "1294:13:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 125,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1294:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								}
+							],
+							"name": "MProtoProduct",
+							"nameLocation": "958:13:1",
+							"nodeType": "StructDefinition",
+							"scope": 260,
+							"src": "951:361:1",
+							"visibility": "public"
+						},
+						{
+							"canonicalName": "SecurityBond",
+							"id": 138,
+							"members": [
+								{
+									"constant": false,
+									"id": 129,
+									"mutability": "mutable",
+									"name": "id",
+									"nameLocation": "1377:2:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 138,
+									"src": "1369:10:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 128,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1369:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 131,
+									"mutability": "mutable",
+									"name": "owner",
+									"nameLocation": "1395:5:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 138,
+									"src": "1387:13:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 130,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "1387:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 133,
+									"mutability": "mutable",
+									"name": "amount",
+									"nameLocation": "1416:6:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 138,
+									"src": "1408:14:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 132,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1408:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 135,
+									"mutability": "mutable",
+									"name": "erc20",
+									"nameLocation": "1438:5:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 138,
+									"src": "1430:13:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 134,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "1430:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 137,
+									"mutability": "mutable",
+									"name": "created",
+									"nameLocation": "1459:7:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 138,
+									"src": "1451:15:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 136,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "1451:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								}
+							],
+							"name": "SecurityBond",
+							"nameLocation": "1348:12:1",
+							"nodeType": "StructDefinition",
+							"scope": 260,
+							"src": "1341:130:1",
+							"visibility": "public"
+						},
+						{
+							"canonicalName": "ProtoSecurityBond",
+							"id": 145,
+							"members": [
+								{
+									"constant": false,
+									"id": 140,
+									"mutability": "mutable",
+									"name": "owner",
+									"nameLocation": "1516:5:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 145,
+									"src": "1508:13:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 139,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "1508:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 142,
+									"mutability": "mutable",
+									"name": "amount",
+									"nameLocation": "1537:6:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 145,
+									"src": "1529:14:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 141,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1529:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 144,
+									"mutability": "mutable",
+									"name": "erc20",
+									"nameLocation": "1559:5:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 145,
+									"src": "1551:13:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 143,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "1551:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								}
+							],
+							"name": "ProtoSecurityBond",
+							"nameLocation": "1482:17:1",
+							"nodeType": "StructDefinition",
+							"scope": 260,
+							"src": "1475:94:1",
+							"visibility": "public"
+						},
+						{
+							"canonicalName": "Market",
+							"id": 177,
+							"members": [
+								{
+									"constant": false,
+									"id": 147,
+									"mutability": "mutable",
+									"name": "id",
+									"nameLocation": "1603:2:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 177,
+									"src": "1595:10:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 146,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1595:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 149,
+									"mutability": "mutable",
+									"name": "owner",
+									"nameLocation": "1621:5:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 177,
+									"src": "1613:13:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 148,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "1613:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 152,
+									"mutability": "mutable",
+									"name": "riskType",
+									"nameLocation": "1643:8:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 177,
+									"src": "1634:17:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_enum$_RiskType_$188",
+										"typeString": "enum RiskType"
+									},
+									"typeName": {
+										"id": 151,
+										"nodeType": "UserDefinedTypeName",
+										"pathNode": {
+											"id": 150,
+											"name": "RiskType",
+											"nameLocations": [
+												"1634:8:1"
+											],
+											"nodeType": "IdentifierPath",
+											"referencedDeclaration": 188,
+											"src": "1634:8:1"
+										},
+										"referencedDeclaration": 188,
+										"src": "1634:8:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_enum$_RiskType_$188",
+											"typeString": "enum RiskType"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 154,
+									"mutability": "mutable",
+									"name": "fromToken",
+									"nameLocation": "1667:9:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 177,
+									"src": "1659:17:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 153,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "1659:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 156,
+									"mutability": "mutable",
+									"name": "toToken",
+									"nameLocation": "1691:7:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 177,
+									"src": "1683:15:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 155,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "1683:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 158,
+									"mutability": "mutable",
+									"name": "minDuration",
+									"nameLocation": "1713:11:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 177,
+									"src": "1705:19:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 157,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1705:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 160,
+									"mutability": "mutable",
+									"name": "maxDuration",
+									"nameLocation": "1740:11:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 177,
+									"src": "1732:19:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 159,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1732:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 162,
+									"mutability": "mutable",
+									"name": "minReturn",
+									"nameLocation": "1767:9:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 177,
+									"src": "1759:17:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 161,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1759:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 164,
+									"mutability": "mutable",
+									"name": "maxSlots",
+									"nameLocation": "1792:8:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 177,
+									"src": "1784:16:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 163,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1784:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 166,
+									"mutability": "mutable",
+									"name": "marketBondAmount",
+									"nameLocation": "1816:16:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 177,
+									"src": "1808:24:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 165,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1808:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 168,
+									"mutability": "mutable",
+									"name": "marketBondErc20",
+									"nameLocation": "1848:15:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 177,
+									"src": "1840:23:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 167,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "1840:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 170,
+									"mutability": "mutable",
+									"name": "createDate",
+									"nameLocation": "1878:10:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 177,
+									"src": "1870:18:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 169,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1870:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 172,
+									"mutability": "mutable",
+									"name": "expiryDate",
+									"nameLocation": "1904:10:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 177,
+									"src": "1896:18:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 171,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1896:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 174,
+									"mutability": "mutable",
+									"name": "finalExitDate",
+									"nameLocation": "1930:13:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 177,
+									"src": "1922:21:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 173,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1922:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 176,
+									"mutability": "mutable",
+									"name": "bondId",
+									"nameLocation": "1959:6:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 177,
+									"src": "1951:14:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 175,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "1951:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								}
+							],
+							"name": "Market",
+							"nameLocation": "1580:6:1",
+							"nodeType": "StructDefinition",
+							"scope": 260,
+							"src": "1573:397:1",
+							"visibility": "public"
+						},
+						{
+							"canonicalName": "ObjType",
+							"id": 184,
+							"members": [
+								{
+									"id": 178,
+									"name": "PENSION",
+									"nameLocation": "1988:7:1",
+									"nodeType": "EnumValue",
+									"src": "1988:7:1"
+								},
+								{
+									"id": 179,
+									"name": "MARKET",
+									"nameLocation": "1997:6:1",
+									"nodeType": "EnumValue",
+									"src": "1997:6:1"
+								},
+								{
+									"id": 180,
+									"name": "TREASURY",
+									"nameLocation": "2005:8:1",
+									"nodeType": "EnumValue",
+									"src": "2005:8:1"
+								},
+								{
+									"id": 181,
+									"name": "POSITION",
+									"nameLocation": "2015:8:1",
+									"nodeType": "EnumValue",
+									"src": "2015:8:1"
+								},
+								{
+									"id": 182,
+									"name": "BOND",
+									"nameLocation": "2025:4:1",
+									"nodeType": "EnumValue",
+									"src": "2025:4:1"
+								},
+								{
+									"id": 183,
+									"name": "PRODUCT",
+									"nameLocation": "2031:7:1",
+									"nodeType": "EnumValue",
+									"src": "2031:7:1"
+								}
+							],
+							"name": "ObjType",
+							"nameLocation": "1979:7:1",
+							"nodeType": "EnumDefinition",
+							"src": "1974:65:1"
+						},
+						{
+							"canonicalName": "RiskType",
+							"id": 188,
+							"members": [
+								{
+									"id": 185,
+									"name": "HIGH",
+									"nameLocation": "2058:4:1",
+									"nodeType": "EnumValue",
+									"src": "2058:4:1"
+								},
+								{
+									"id": 186,
+									"name": "MEDIUM",
+									"nameLocation": "2064:6:1",
+									"nodeType": "EnumValue",
+									"src": "2064:6:1"
+								},
+								{
+									"id": 187,
+									"name": "LOW",
+									"nameLocation": "2072:3:1",
+									"nodeType": "EnumValue",
+									"src": "2072:3:1"
+								}
+							],
+							"name": "RiskType",
+							"nameLocation": "2048:8:1",
+							"nodeType": "EnumDefinition",
+							"src": "2043:33:1"
+						},
+						{
+							"canonicalName": "Schedule",
+							"id": 193,
+							"members": [
+								{
+									"id": 189,
+									"name": "DAILY",
+									"nameLocation": "2095:5:1",
+									"nodeType": "EnumValue",
+									"src": "2095:5:1"
+								},
+								{
+									"id": 190,
+									"name": "WEEKLY",
+									"nameLocation": "2102:6:1",
+									"nodeType": "EnumValue",
+									"src": "2102:6:1"
+								},
+								{
+									"id": 191,
+									"name": "MONTHLY",
+									"nameLocation": "2110:7:1",
+									"nodeType": "EnumValue",
+									"src": "2110:7:1"
+								},
+								{
+									"id": 192,
+									"name": "QUARTERLY",
+									"nameLocation": "2119:9:1",
+									"nodeType": "EnumValue",
+									"src": "2119:9:1"
+								}
+							],
+							"name": "Schedule",
+							"nameLocation": "2085:8:1",
+							"nodeType": "EnumDefinition",
+							"src": "2080:49:1"
+						},
+						{
+							"canonicalName": "FinancialSchedule",
+							"id": 207,
+							"members": [
+								{
+									"constant": false,
+									"id": 196,
+									"mutability": "mutable",
+									"name": "schedule",
+									"nameLocation": "2175:8:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 207,
+									"src": "2166:17:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_enum$_Schedule_$193",
+										"typeString": "enum Schedule"
+									},
+									"typeName": {
+										"id": 195,
+										"nodeType": "UserDefinedTypeName",
+										"pathNode": {
+											"id": 194,
+											"name": "Schedule",
+											"nameLocations": [
+												"2166:8:1"
+											],
+											"nodeType": "IdentifierPath",
+											"referencedDeclaration": 193,
+											"src": "2166:8:1"
+										},
+										"referencedDeclaration": 193,
+										"src": "2166:8:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_enum$_Schedule_$193",
+											"typeString": "enum Schedule"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 198,
+									"mutability": "mutable",
+									"name": "term",
+									"nameLocation": "2199:4:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 207,
+									"src": "2191:12:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 197,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "2191:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 200,
+									"mutability": "mutable",
+									"name": "minimumAmount",
+									"nameLocation": "2219:13:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 207,
+									"src": "2211:21:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 199,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "2211:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 202,
+									"mutability": "mutable",
+									"name": "maximumAmount",
+									"nameLocation": "2248:13:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 207,
+									"src": "2240:21:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 201,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "2240:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 204,
+									"mutability": "mutable",
+									"name": "totalIntervals",
+									"nameLocation": "2276:14:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 207,
+									"src": "2268:22:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 203,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "2268:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 206,
+									"mutability": "mutable",
+									"name": "totalAmount",
+									"nameLocation": "2306:11:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 207,
+									"src": "2298:19:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 205,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "2298:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								}
+							],
+							"name": "FinancialSchedule",
+							"nameLocation": "2140:17:1",
+							"nodeType": "StructDefinition",
+							"scope": 260,
+							"src": "2133:189:1",
+							"visibility": "public"
+						},
+						{
+							"canonicalName": "Tolerance",
+							"id": 212,
+							"members": [
+								{
+									"constant": false,
+									"id": 209,
+									"mutability": "mutable",
+									"name": "maxGainPercentage",
+									"nameLocation": "2359:17:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 212,
+									"src": "2351:25:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 208,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "2351:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 211,
+									"mutability": "mutable",
+									"name": "maxLossPercentage",
+									"nameLocation": "2392:17:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 212,
+									"src": "2384:25:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 210,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "2384:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								}
+							],
+							"name": "Tolerance",
+							"nameLocation": "2333:9:1",
+							"nodeType": "StructDefinition",
+							"scope": 260,
+							"src": "2326:88:1",
+							"visibility": "public"
+						},
+						{
+							"canonicalName": "PositionStatus",
+							"id": 215,
+							"members": [
+								{
+									"id": 213,
+									"name": "OPEN",
+									"nameLocation": "2439:4:1",
+									"nodeType": "EnumValue",
+									"src": "2439:4:1"
+								},
+								{
+									"id": 214,
+									"name": "CLOSED",
+									"nameLocation": "2445:6:1",
+									"nodeType": "EnumValue",
+									"src": "2445:6:1"
+								}
+							],
+							"name": "PositionStatus",
+							"nameLocation": "2423:14:1",
+							"nodeType": "EnumDefinition",
+							"src": "2418:34:1"
+						},
+						{
+							"canonicalName": "Position",
+							"id": 232,
+							"members": [
+								{
+									"constant": false,
+									"id": 217,
+									"mutability": "mutable",
+									"name": "id",
+									"nameLocation": "2488:2:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 232,
+									"src": "2480:10:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 216,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "2480:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 220,
+									"mutability": "mutable",
+									"name": "status",
+									"nameLocation": "2513:6:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 232,
+									"src": "2498:21:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_enum$_PositionStatus_$215",
+										"typeString": "enum PositionStatus"
+									},
+									"typeName": {
+										"id": 219,
+										"nodeType": "UserDefinedTypeName",
+										"pathNode": {
+											"id": 218,
+											"name": "PositionStatus",
+											"nameLocations": [
+												"2498:14:1"
+											],
+											"nodeType": "IdentifierPath",
+											"referencedDeclaration": 215,
+											"src": "2498:14:1"
+										},
+										"referencedDeclaration": 215,
+										"src": "2498:14:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_enum$_PositionStatus_$215",
+											"typeString": "enum PositionStatus"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 222,
+									"mutability": "mutable",
+									"name": "mPensionId",
+									"nameLocation": "2535:10:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 232,
+									"src": "2527:18:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 221,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "2527:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 224,
+									"mutability": "mutable",
+									"name": "amount",
+									"nameLocation": "2561:6:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 232,
+									"src": "2553:14:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 223,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "2553:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 226,
+									"mutability": "mutable",
+									"name": "created",
+									"nameLocation": "2583:7:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 232,
+									"src": "2575:15:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 225,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "2575:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 229,
+									"mutability": "mutable",
+									"name": "tolerance",
+									"nameLocation": "2608:9:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 232,
+									"src": "2598:19:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_struct$_Tolerance_$212_storage_ptr",
+										"typeString": "struct Tolerance"
+									},
+									"typeName": {
+										"id": 228,
+										"nodeType": "UserDefinedTypeName",
+										"pathNode": {
+											"id": 227,
+											"name": "Tolerance",
+											"nameLocations": [
+												"2598:9:1"
+											],
+											"nodeType": "IdentifierPath",
+											"referencedDeclaration": 212,
+											"src": "2598:9:1"
+										},
+										"referencedDeclaration": 212,
+										"src": "2598:9:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_struct$_Tolerance_$212_storage_ptr",
+											"typeString": "struct Tolerance"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 231,
+									"mutability": "mutable",
+									"name": "market",
+									"nameLocation": "2633:6:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 232,
+									"src": "2625:14:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 230,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "2625:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								}
+							],
+							"name": "Position",
+							"nameLocation": "2463:8:1",
+							"nodeType": "StructDefinition",
+							"scope": 260,
+							"src": "2456:188:1",
+							"visibility": "public"
+						},
+						{
+							"canonicalName": "TxType",
+							"id": 243,
+							"members": [
+								{
+									"id": 233,
+									"name": "CREATE",
+									"nameLocation": "2661:6:1",
+									"nodeType": "EnumValue",
+									"src": "2661:6:1"
+								},
+								{
+									"id": 234,
+									"name": "CONTRIBUTE",
+									"nameLocation": "2669:10:1",
+									"nodeType": "EnumValue",
+									"src": "2669:10:1"
+								},
+								{
+									"id": 235,
+									"name": "DRAWDOWN",
+									"nameLocation": "2681:8:1",
+									"nodeType": "EnumValue",
+									"src": "2681:8:1"
+								},
+								{
+									"id": 236,
+									"name": "PULL",
+									"nameLocation": "2691:4:1",
+									"nodeType": "EnumValue",
+									"src": "2691:4:1"
+								},
+								{
+									"id": 237,
+									"name": "PUSh",
+									"nameLocation": "2697:4:1",
+									"nodeType": "EnumValue",
+									"src": "2697:4:1"
+								},
+								{
+									"id": 238,
+									"name": "INVEST",
+									"nameLocation": "2703:6:1",
+									"nodeType": "EnumValue",
+									"src": "2703:6:1"
+								},
+								{
+									"id": 239,
+									"name": "DIVEST",
+									"nameLocation": "2711:6:1",
+									"nodeType": "EnumValue",
+									"src": "2711:6:1"
+								},
+								{
+									"id": 240,
+									"name": "CLOSE",
+									"nameLocation": "2719:5:1",
+									"nodeType": "EnumValue",
+									"src": "2719:5:1"
+								},
+								{
+									"id": 241,
+									"name": "EXPIRE",
+									"nameLocation": "2726:6:1",
+									"nodeType": "EnumValue",
+									"src": "2726:6:1"
+								},
+								{
+									"id": 242,
+									"name": "UPDATE",
+									"nameLocation": "2734:6:1",
+									"nodeType": "EnumValue",
+									"src": "2734:6:1"
+								}
+							],
+							"name": "TxType",
+							"nameLocation": "2653:6:1",
+							"nodeType": "EnumDefinition",
+							"src": "2648:93:1"
+						},
+						{
+							"canonicalName": "Tx",
+							"id": 259,
+							"members": [
+								{
+									"constant": false,
+									"id": 245,
+									"mutability": "mutable",
+									"name": "id",
+									"nameLocation": "2771:2:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 259,
+									"src": "2763:10:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 244,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "2763:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 248,
+									"mutability": "mutable",
+									"name": "txType",
+									"nameLocation": "2788:6:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 259,
+									"src": "2781:13:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_enum$_TxType_$243",
+										"typeString": "enum TxType"
+									},
+									"typeName": {
+										"id": 247,
+										"nodeType": "UserDefinedTypeName",
+										"pathNode": {
+											"id": 246,
+											"name": "TxType",
+											"nameLocations": [
+												"2781:6:1"
+											],
+											"nodeType": "IdentifierPath",
+											"referencedDeclaration": 243,
+											"src": "2781:6:1"
+										},
+										"referencedDeclaration": 243,
+										"src": "2781:6:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_enum$_TxType_$243",
+											"typeString": "enum TxType"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 250,
+									"mutability": "mutable",
+									"name": "location",
+									"nameLocation": "2810:8:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 259,
+									"src": "2802:16:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 249,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "2802:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 252,
+									"mutability": "mutable",
+									"name": "entityId",
+									"nameLocation": "2834:8:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 259,
+									"src": "2826:16:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 251,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "2826:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 254,
+									"mutability": "mutable",
+									"name": "date",
+									"nameLocation": "2858:4:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 259,
+									"src": "2850:12:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 253,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "2850:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 256,
+									"mutability": "mutable",
+									"name": "amount",
+									"nameLocation": "2878:6:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 259,
+									"src": "2870:14:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 255,
+										"name": "uint256",
+										"nodeType": "ElementaryTypeName",
+										"src": "2870:7:1",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 258,
+									"mutability": "mutable",
+									"name": "erc20",
+									"nameLocation": "2900:5:1",
+									"nodeType": "VariableDeclaration",
+									"scope": 259,
+									"src": "2892:13:1",
+									"stateVariable": false,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_address",
+										"typeString": "address"
+									},
+									"typeName": {
+										"id": 257,
+										"name": "address",
+										"nodeType": "ElementaryTypeName",
+										"src": "2892:7:1",
+										"stateMutability": "nonpayable",
+										"typeDescriptions": {
+											"typeIdentifier": "t_address",
+											"typeString": "address"
+										}
+									},
+									"visibility": "internal"
+								}
+							],
+							"name": "Tx",
+							"nameLocation": "2752:2:1",
+							"nodeType": "StructDefinition",
+							"scope": 260,
+							"src": "2745:165:1",
+							"visibility": "public"
+						}
+					],
+					"src": "39:2871:1"
+				},
+				"id": 1
+			}
+		}
+	}
+}

@@ -1,0 +1,248 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "getMProductIds",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "_mProductIds",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productId",
+						"type": "uint256"
+					}
+				],
+				"name": "getProduct",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "provider",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "erc20",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "totalContribution",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "principalOnMaturity",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "interest",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum RiskType",
+								"name": "riskType",
+								"type": "uint8"
+							},
+							{
+								"components": [
+									{
+										"internalType": "enum Schedule",
+										"name": "schedule",
+										"type": "uint8"
+									},
+									{
+										"internalType": "uint256",
+										"name": "term",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "minimumAmount",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "maximumAmount",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "totalIntervals",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "totalAmount",
+										"type": "uint256"
+									}
+								],
+								"internalType": "struct FinancialSchedule",
+								"name": "contributionSchedule",
+								"type": "tuple"
+							},
+							{
+								"components": [
+									{
+										"internalType": "enum Schedule",
+										"name": "schedule",
+										"type": "uint8"
+									},
+									{
+										"internalType": "uint256",
+										"name": "term",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "minimumAmount",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "maximumAmount",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "totalIntervals",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "totalAmount",
+										"type": "uint256"
+									}
+								],
+								"internalType": "struct FinancialSchedule",
+								"name": "emissionSchedule",
+								"type": "tuple"
+							},
+							{
+								"components": [
+									{
+										"internalType": "uint256",
+										"name": "maxGainPercentage",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "maxLossPercentage",
+										"type": "uint256"
+									}
+								],
+								"internalType": "struct Tolerance",
+								"name": "tolerance",
+								"type": "tuple"
+							},
+							{
+								"internalType": "uint256",
+								"name": "createdDate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "expiryDate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "units",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct MPProduct",
+						"name": "_product",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productId",
+						"type": "uint256"
+					}
+				],
+				"name": "updateProductInventory",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/product/IMPProductManager.sol": "IMPProductManager"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/product/IMPProductManager.sol": {
+			"keccak256": "0x3fe748da6420b20f970e8a1443814276d780fd87c4103cf10f1750610d5f03de",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://dbe02452199900cb1ad9ca9a12454da848ee6d0639a1139bc6724dcc94630efc",
+				"dweb:/ipfs/QmUWNaEDFWCUafMnZPRfMf7RxtY5e5FqJxE8pyeTwbgfkY"
+			]
+		},
+		"contracts/structs/MPStructs.sol": {
+			"keccak256": "0x05c1b57440e861101830685e1ffc3e3b4fc144c09faac5e8eb071d006f43dfc0",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://2c0325b021cd7ed3bc81bdfd16b9d1d4593e5680c02353b58f71148697e14cfe",
+				"dweb:/ipfs/QmP29RkyY5unfm3rbh82DWaJK2yLkc11JAnGAaQ9BpdBCZ"
+			]
+		}
+	},
+	"version": 1
+}

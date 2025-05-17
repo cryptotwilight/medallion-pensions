@@ -1,0 +1,165 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "enum TxType",
+						"name": "_txType",
+						"type": "uint8"
+					},
+					{
+						"internalType": "enum ObjType",
+						"name": "_objType",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "location",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_erc20",
+						"type": "address"
+					}
+				],
+				"name": "addTx",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_mPensionId",
+						"type": "uint256"
+					}
+				],
+				"name": "getMPensionTx",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "_txIds",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"name": "getTx",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum TxType",
+								"name": "txType",
+								"type": "uint8"
+							},
+							{
+								"internalType": "address",
+								"name": "location",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "entityId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "date",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "erc20",
+								"type": "address"
+							}
+						],
+						"internalType": "struct Tx",
+						"name": "_tx",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/core/factory/MPVaultFactry_flattened.sol": "IMPTxManager"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/core/factory/MPVaultFactry_flattened.sol": {
+			"keccak256": "0x8690e9226b549ae2ec3d52765a0294b6dafbb51d0757635e5a8103a804cffd9d",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://fe3346c1605a632054d2a4032bae07ea239aea6e083309b3716c49dbfc664bb5",
+				"dweb:/ipfs/QmTYLJdcbgudDA7tHmM6kt7SFmAcdZqZQnX5GbeaXvMN71"
+			]
+		}
+	},
+	"version": 1
+}

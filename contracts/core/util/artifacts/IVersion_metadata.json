@@ -1,0 +1,72 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "getName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getVersion",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_version",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/core/util/MPRegister_flattened.sol": "IVersion"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/core/util/MPRegister_flattened.sol": {
+			"keccak256": "0x53a1acafb26e2e2a913b6816e0f55c4bbef5373db1b1896e2abbeea911ddfef3",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://0cc67e44311560c6ffb78873d0d7bceeb2c6396929694e52f4b5de694d70c84f",
+				"dweb:/ipfs/QmZCXodrntyJSNKdk1bn11vpcVe3gw82U3xh7kd751NnyR"
+			]
+		}
+	},
+	"version": 1
+}

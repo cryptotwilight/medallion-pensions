@@ -1,0 +1,103 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"name": "getAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					}
+				],
+				"name": "hasAddress",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "_hasAddress",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "isKnown",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "_isKnown",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/core/util/MPRegister_flattened.sol": "IRegister"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/core/util/MPRegister_flattened.sol": {
+			"keccak256": "0x53a1acafb26e2e2a913b6816e0f55c4bbef5373db1b1896e2abbeea911ddfef3",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://0cc67e44311560c6ffb78873d0d7bceeb2c6396929694e52f4b5de694d70c84f",
+				"dweb:/ipfs/QmZCXodrntyJSNKdk1bn11vpcVe3gw82U3xh7kd751NnyR"
+			]
+		}
+	},
+	"version": 1
+}

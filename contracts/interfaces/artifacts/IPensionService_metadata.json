@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.29+commit.ab55807c"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/IPensionService.sol": "IPensionService"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/IPensionService.sol": {
+			"keccak256": "0xd815f467b14ab57db9f114fceceab09f638150b016fe3c8f44fe55a0a71bbb60",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://483dabde6d915c9954baa001f1d6559189003fb95c506b19220998dac59813f6",
+				"dweb:/ipfs/QmWMRzdxiwoDsFZHsrgtKpfhpuYH4NPtqvAUSLCyoBHCEV"
+			]
+		}
+	},
+	"version": 1
+}

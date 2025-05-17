@@ -1,0 +1,191 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"goerli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"deployedBytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"gasEstimates": null,
+		"methodIdentifiers": {
+			"getMProductIds()": "4157a0f1",
+			"getProduct(uint256)": "b9db15b4"
+		}
+	},
+	"abi": [
+		{
+			"inputs": [],
+			"name": "getMProductIds",
+			"outputs": [
+				{
+					"internalType": "uint256[]",
+					"name": "_mProductIds",
+					"type": "uint256[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_productId",
+					"type": "uint256"
+				}
+			],
+			"name": "getProduct",
+			"outputs": [
+				{
+					"components": [
+						{
+							"internalType": "uint256",
+							"name": "id",
+							"type": "uint256"
+						},
+						{
+							"internalType": "address",
+							"name": "provider",
+							"type": "address"
+						},
+						{
+							"internalType": "address",
+							"name": "pensionCurrencyErc20",
+							"type": "address"
+						},
+						{
+							"internalType": "enum RiskType",
+							"name": "riskType",
+							"type": "uint8"
+						},
+						{
+							"internalType": "enum TreasuryType",
+							"name": "treasuryType",
+							"type": "uint8"
+						},
+						{
+							"components": [
+								{
+									"internalType": "enum Schedule",
+									"name": "schedule",
+									"type": "uint8"
+								},
+								{
+									"internalType": "uint256",
+									"name": "term",
+									"type": "uint256"
+								},
+								{
+									"internalType": "uint256",
+									"name": "minimumAmount",
+									"type": "uint256"
+								},
+								{
+									"internalType": "uint256",
+									"name": "maximumAmount",
+									"type": "uint256"
+								},
+								{
+									"internalType": "uint256",
+									"name": "totalIntervals",
+									"type": "uint256"
+								},
+								{
+									"internalType": "uint256",
+									"name": "totalAmount",
+									"type": "uint256"
+								}
+							],
+							"internalType": "struct FinancialSchedule",
+							"name": "paymentSchedule",
+							"type": "tuple"
+						},
+						{
+							"components": [
+								{
+									"internalType": "enum Schedule",
+									"name": "schedule",
+									"type": "uint8"
+								},
+								{
+									"internalType": "uint256",
+									"name": "term",
+									"type": "uint256"
+								},
+								{
+									"internalType": "uint256",
+									"name": "minimumAmount",
+									"type": "uint256"
+								},
+								{
+									"internalType": "uint256",
+									"name": "maximumAmount",
+									"type": "uint256"
+								},
+								{
+									"internalType": "uint256",
+									"name": "totalIntervals",
+									"type": "uint256"
+								},
+								{
+									"internalType": "uint256",
+									"name": "totalAmount",
+									"type": "uint256"
+								}
+							],
+							"internalType": "struct FinancialSchedule",
+							"name": "emissionSchedule",
+							"type": "tuple"
+						}
+					],
+					"internalType": "struct MPProduct",
+					"name": "_product",
+					"type": "tuple"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		}
+	]
+}

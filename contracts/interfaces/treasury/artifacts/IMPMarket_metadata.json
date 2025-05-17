@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/treasury/IMPMarket.sol": "IMPMarket"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/treasury/IMPMarket.sol": {
+			"keccak256": "0x4da276b412916bca05bfe120bfdfdefb553d292f6bfbf37fef1e4a41e8ba4412",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://fb34c61ddc34349a57972fe36410968e9fffa238c93151db4c9f5b599855057e",
+				"dweb:/ipfs/QmRFVz7DyVrp3cQF7xGcU7k1gUbxySr7rfGV9y2ESptDpH"
+			]
+		}
+	},
+	"version": 1
+}

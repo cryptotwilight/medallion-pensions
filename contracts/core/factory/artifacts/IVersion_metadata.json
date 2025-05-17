@@ -1,0 +1,72 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "getName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getVersion",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_version",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/core/factory/MPVaultFactry_flattened.sol": "IVersion"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/core/factory/MPVaultFactry_flattened.sol": {
+			"keccak256": "0x8690e9226b549ae2ec3d52765a0294b6dafbb51d0757635e5a8103a804cffd9d",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://fe3346c1605a632054d2a4032bae07ea239aea6e083309b3716c49dbfc664bb5",
+				"dweb:/ipfs/QmTYLJdcbgudDA7tHmM6kt7SFmAcdZqZQnX5GbeaXvMN71"
+			]
+		}
+	},
+	"version": 1
+}

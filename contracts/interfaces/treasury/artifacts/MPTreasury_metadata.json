@@ -1,0 +1,285 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_positionId",
+						"type": "uint256"
+					}
+				],
+				"name": "divest",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAllowedBondTokens",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "_erc20",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_positionId",
+						"type": "uint256"
+					}
+				],
+				"name": "getPosition",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum PStatus",
+								"name": "status",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint256",
+								"name": "mPensionId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "created",
+								"type": "uint256"
+							},
+							{
+								"components": [
+									{
+										"internalType": "uint256",
+										"name": "maxGainPercentage",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "maxLossPercentage",
+										"type": "uint256"
+									}
+								],
+								"internalType": "struct Tolerance",
+								"name": "tolerance",
+								"type": "tuple"
+							},
+							{
+								"internalType": "address",
+								"name": "market",
+								"type": "address"
+							}
+						],
+						"internalType": "struct Position",
+						"name": "_position",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getPositionIds",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "_positionIds",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_bondId",
+						"type": "uint256"
+					}
+				],
+				"name": "getTreasuryBond",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "erc20",
+								"type": "address"
+							}
+						],
+						"internalType": "struct TreasuryBond",
+						"name": "_bond",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_mPensionId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_market",
+						"type": "address"
+					}
+				],
+				"name": "invest",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_positionId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_erc20",
+						"type": "address"
+					}
+				],
+				"name": "placeBond",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_bondId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_bondId",
+						"type": "uint256"
+					}
+				],
+				"name": "releaseBond",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_txId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/treasury/IMPTreasury.sol": "MPTreasury"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/treasury/IMPTreasury.sol": {
+			"keccak256": "0xca3ae8d88a83772aa15aaded0da229b8ff662563b188c9632325ae005380a35c",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://3375d4342fd4ea339d8781b90459b8bb8a972c4cdce2bac8e94ac05e04861d38",
+				"dweb:/ipfs/Qmag565JHzi2ZzoZCHkWciWotTgRTgZ9fgdxMd8pzPBwHG"
+			]
+		},
+		"contracts/structs/MPStructs.sol": {
+			"keccak256": "0xe8882ec2d5bac9be29a184115c060dd5001a40b51b28ffa1c083c91d310382e1",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://31fa00a9f9d364cf1c2fe5ad365e991b2c9fd9dded680f98f31db0f88c7c6502",
+				"dweb:/ipfs/Qmb8WPPVkEj3pDmpvX7BpDXYpTPRBpbuitLCzYtvaijV1b"
+			]
+		}
+	},
+	"version": 1
+}

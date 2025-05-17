@@ -1,0 +1,65 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_mPensionId",
+						"type": "uint256"
+					}
+				],
+				"name": "createVault",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "_mPensionVault",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/factory/IMPVaultFactory.sol": "IMPVaultFactory"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/factory/IMPVaultFactory.sol": {
+			"keccak256": "0xebafcfba85f4a35b0e6a2d3ad94ce719c752f75ffe6fd61228f1a44b548a6d30",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://a45f8dc45e0eaae2df98485bf17477b67fe71040b5713dad4d58571a80777300",
+				"dweb:/ipfs/Qmcokdg5mJjGRHotv8UdbBKjk6K8ipF8JgRmK8wNHbSz78"
+			]
+		}
+	},
+	"version": 1
+}

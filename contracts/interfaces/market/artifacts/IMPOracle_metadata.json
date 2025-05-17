@@ -1,0 +1,65 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_base",
+						"type": "address"
+					}
+				],
+				"name": "getPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/market/IMPOracle.sol": "IMPOracle"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/market/IMPOracle.sol": {
+			"keccak256": "0xa5d8c70c20077792e95b64dd247b8bcf27f5768e4ecdaf2ce1acbe50d8778eda",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://e26f21ffe68b8c9a526ed2622dc424ba7983947200fb580dc267a65bf2a01134",
+				"dweb:/ipfs/QmbJvmFT6eTVuALZakYu1ospdGPRTZcvx76XcHhAsQ1o48"
+			]
+		}
+	},
+	"version": 1
+}

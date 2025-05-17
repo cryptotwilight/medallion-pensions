@@ -1,0 +1,184 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"goerli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"deployedBytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"gasEstimates": null,
+		"methodIdentifiers": {
+			"divest(uint256)": "8ca17995",
+			"getPosition(uint256)": "eb02c301",
+			"getPositionIds()": "39131906",
+			"invest(uint256,address)": "3d103b97"
+		}
+	},
+	"abi": [
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_mPensionId",
+					"type": "uint256"
+				}
+			],
+			"name": "divest",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "_txId",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_positionId",
+					"type": "uint256"
+				}
+			],
+			"name": "getPosition",
+			"outputs": [
+				{
+					"components": [
+						{
+							"internalType": "uint256",
+							"name": "id",
+							"type": "uint256"
+						},
+						{
+							"internalType": "enum PStatus",
+							"name": "status",
+							"type": "uint8"
+						},
+						{
+							"internalType": "uint256",
+							"name": "mPensionId",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "amount",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "created",
+							"type": "uint256"
+						},
+						{
+							"components": [
+								{
+									"internalType": "uint256",
+									"name": "maxGainPercentage",
+									"type": "uint256"
+								},
+								{
+									"internalType": "uint256",
+									"name": "maxLossPercentage",
+									"type": "uint256"
+								}
+							],
+							"internalType": "struct Tolerance",
+							"name": "tolerance",
+							"type": "tuple"
+						},
+						{
+							"internalType": "address",
+							"name": "market",
+							"type": "address"
+						}
+					],
+					"internalType": "struct Position",
+					"name": "_position",
+					"type": "tuple"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getPositionIds",
+			"outputs": [
+				{
+					"internalType": "uint256[]",
+					"name": "_positionIds",
+					"type": "uint256[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_mPensionId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "_market",
+					"type": "address"
+				}
+			],
+			"name": "invest",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "_txId",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		}
+	]
+}
